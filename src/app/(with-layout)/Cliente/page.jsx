@@ -5,6 +5,7 @@ import { useUser } from '@/context/Context.js'
 import style from './Cliente.module.css'
 import Button from '@/components/Button'
 import Subtitle from '@/components/Subtitle'
+import Card from '@/components/Card'
 
 import Tag from '../../../components/Tag'
 import { useRouter } from 'next/navigation';
@@ -32,8 +33,7 @@ function Home() {
 
     return (
 
-
-        <main className={style.main}>
+        <main className="">
             <Subtitle htmlFor="">Categorias</Subtitle>
             <div className="flex flex-wrap justify-between">
                 <Tag styled='tagPrimary'>Los mas recientes</Tag>
@@ -42,29 +42,16 @@ function Home() {
                 <Tag styled='tagSecondary'>Otros</Tag>
             </div>
             <br />
-            {productDB !== null && productDB !== undefined &&
-                productDB.map((i, index) => {
 
-                 return   <div className={style.card}>
-                        <p>
+            <div  className="relative w-full px-5">
 
-                            <span>{i.nombre}</span><span>{i.costo}</span>
-                        </p>
-                        <img src={i.url} alt="" />
-                        <div>
-                            <Button theme='Primary' styled='miniButtonSecondaryGreen' click={()=>seeMore(i)}>Ver +</Button>
-                            <Button theme='Success' click={seeMore}>Comprar</Button>
-                        </div>
-                        <span className='text-center'>{i.empresa}</span>
-                    </div>
-
-
-                })
-            }
-
+                {productDB !== null && productDB !== undefined &&
+                    productDB.map((i, index) =>
+                        <Card nombre={i.nombre} costo={i.costo} url={i.url} empresa={i.empresa} />
+                    )
+                }
+            </div>
         </main>
-
-
     )
 }
 
@@ -73,3 +60,15 @@ export default WithAuth(Home)
 
 
 
+          // <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                //         <p>
+
+                //             <span>{i.nombre}</span><span>{i.costo}</span>
+                //         </p>
+                //         <img src={i.url} alt="" />
+                //         <div>
+                //             <Button theme='Primary' styled='miniButtonSecondaryGreen' click={() => seeMore(i)}>Ver +</Button>
+                //             <Button theme='Success' click={seeMore}>Comprar</Button>
+                //         </div>
+                //         <span className='text-center'>{i.empresa}</span>
+                //     </div>

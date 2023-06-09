@@ -7,8 +7,8 @@ export default function Button({ styled, click, children }) {
 
     return (
         <span
-            class={`w-[40%] bg-green-100 text-green-800 text-[14px] text-center font-medium px-2.5 py-0.5 my-1 rounded-2xl 
-            dark:bg-gray-700 dark:text-green-400 border border-green-400 ${style[styled]}`}
+            class={`w-[40%] bg-green-100 text-gray-400 text-[14px] text-center font-medium px-2.5 py-0.5 my-1 rounded-2xl 
+         border border-gray-400 ${style[styled]}`}
             onClick={click}
         >
             {children}
