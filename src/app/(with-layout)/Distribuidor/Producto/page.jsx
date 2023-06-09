@@ -20,8 +20,6 @@ function Home() {
 
 
     return (
-
-
         <main className=" w-full  flex flex-col justlfy-center  items-center">
             <Subtitle htmlFor="">Categorias</Subtitle>
             <div className="flex flex-wrap justify-between">
@@ -42,11 +40,7 @@ function Home() {
                 </div>
                 <span>Nombre de la empresa</span>
             </div>
-
-     
         </main>
-
-
     )
 }
 
