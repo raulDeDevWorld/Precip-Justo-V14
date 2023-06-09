@@ -31,7 +31,7 @@ function Home({ children }) {
   console.log(userDB)
 
   return (
-    <div className="pt-12 pb-12 min-h-screen bg-gray-200 z-50">
+    <div className="pt-12 pb-12 min-h-screen bg-gray-white z-50">
 
       <nav className="w-screen fixed top-0 border-b border-gray-200 ">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between bg-[#0064FA] mx-auto p-4 h-[60px] z-50">
