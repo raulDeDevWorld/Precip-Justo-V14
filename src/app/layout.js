@@ -22,7 +22,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <UserProvider>
-          {children}
+          <main className='h-screen'>
+            {children}
+          </main>
         </UserProvider>
       </body>
     </html>

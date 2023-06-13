@@ -35,40 +35,36 @@ export default function Home() {
   console.log(user)
   return (
 
-    <div className={style.container}>
-      <header className={style.header}></header>
-      <main className={style.main}>
-        <Image src="/logo-main.svg" width="200" height="200" alt="User" />
-        <br />
-        <br />
-
-        <div
-          className="w-[80%] p-0 bg-transparent rounded-lg shadow sm:p-6 md:p-8 "
-          // className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 
-        // dark:bg-gray-800 dark:border-gray-700"
-        >
-          <form className="space-y-6" onSubmit={signUpHandler} >
-            <h5 className="text-[24px] font-medium text-white">Registrate</h5>
-            <div>
-              <label htmlFor="email" className="block mb-2 text-[16px] text-left font-medium text-white">Email</label>
-              <Input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-[16px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-            </div>
-            <div>
-              <label htmlFor="password" className="block mb-2 text-[16px] text-left  font-medium text-white">Contraseña</label>
-              <Input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-100 text-[16px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-            </div>
-            <div className="flex items-start">
-              <a href="#" className="ml-auto text-[14px] text-gray-100 hover:underline">Olvidaste tu contraseña?</a>
-            </div>
-            <Button type="submit" theme="Transparent">Continuar</Button>
-            <div className="text-[14px] font-medium text-white">Ya tienes una cuenta? <Link href="/" className="text-gray-100 hover:underline">Inicia Sessión</Link >
-            </div>
-          </form>
+    <div className="h-full bg-[#0064FA] flex flex-col justify-center items-center p-5"
+      style={{
+        backgroundImage: 'url(/background.png)',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '50% 100%',
+        backgroundAttachment: 'fixed'
+      }}>
+      <form className=" space-y-6 w-[100%] max-w-[350px]" onSubmit={signUpHandler} >
+        <div className='w-full text-center flex justify-center'>
+          <Image src="/logo-main.svg" width="200" height="200" alt="User" />
         </div>
-
-      </main>
-      {/*    {success == 'complete' && <Error>Llene todo el formulario</Error>} */}
+        <br />
+        <br />
+        <h5 className="text-[24px] text-center font-medium text-white">Registrate</h5>
+        <br />
+        <div>
+          <label htmlFor="email" className="block mb-2 text-[16px] text-left font-medium text-white">Email</label>
+          <Input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-[16px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+        </div>
+        <div>
+          <label htmlFor="password" className="block mb-2 text-[16px] text-left  font-medium text-white">Contraseña</label>
+          <Input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-100 text-[16px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+        </div>
+        <div className="flex items-start">
+          <a href="#" className="ml-auto text-[14px] text-gray-100 hover:underline">Olvidaste tu contraseña?</a>
+        </div>
+        <Button type="submit" theme="Transparent">Continuar</Button>
+        <div className="text-[14px] text-center font-medium text-white">Ya tienes una cuenta? <Link href="/" className="text-gray-100 hover:underline">Inicia Sessión</Link >
+        </div>
+      </form>
     </div>
-
   )
 }

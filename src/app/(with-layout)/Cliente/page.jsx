@@ -36,7 +36,7 @@ function Home() {
         <main className="">
             <Subtitle htmlFor="">Categorias</Subtitle>
             <div className="flex flex-wrap justify-between">
-                <Tag styled='tagPrimary'>Los mas recientes</Tag>
+                <Tag styled='tagPrimary'>Recientes</Tag>
                 <Tag styled='tagSecondary'>En oferta</Tag>
                 <Tag styled='tagSecondary'>Recientes</Tag>
                 <Tag styled='tagSecondary'>Otros</Tag>
@@ -44,10 +44,9 @@ function Home() {
             <br />
 
             <div  className="relative w-full px-5">
-
                 {productDB !== null && productDB !== undefined &&
                     productDB.map((i, index) =>
-                        <Card nombre={i.nombre} costo={i.costo} url={i.url} empresa={i.empresa} />
+                        <Card nombre={i.nombre} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i.descripcion} />
                     )
                 }
             </div>

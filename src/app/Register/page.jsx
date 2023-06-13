@@ -42,53 +42,46 @@ function Home() {
 
     console.log(user)
     return (
-
-        <div className={style.container}>
-            <header className={style.header}></header>
-            <main className={style.main}>
-                <Image src="/logo-main.svg" width="200" height="200" alt="User" />
-                <br />
-                <br />
-                <div
-                    className="w-[80%] p-0 bg-transparent rounded-lg shadow sm:p-6 md:p-8 "
-                // className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 
-                // dark:bg-gray-800 dark:border-gray-700"
-                >
-                    <form className="space-y-6" onSubmit={registerHandler} >
-                        <h5 className="text-[25px] font-medium text-white">Registrate</h5>
-                        <div>
-                            <label htmlFor="email" className="block mb-2 text-[16px] text-left font-medium text-white">Nombre</label>
-                            <Input type="text" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" required />
-                        </div>
-                        <div>
-                            <label htmlFor="email" className="block mb-2 text-[16px] text-left font-medium text-white">Tipo de cuenta</label>
-                            <Select arr={['Cliente', 'Medico', 'Clinica', 'Distribuidor']} name='rol' click={onClickHandler} />
-                        </div>
-                        <div>
-                            <label htmlFor="password" className="block mb-2 text-[16px] text-left  font-medium text-white">Ciudad</label>
-                            <Select arr={['La Paz', 'Cochabamba', 'Santa Cruz']} name='Ciudad' click={onClickHandlerCity} />
-                        </div>
-                        <div className="flex items-start">
-                            <div className="flex items-start">
-                                <div className="flex items-center h-5">
-                                    <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
-                                </div>
-                                <label htmlFor="remember" className="ml-2 text-[14px] font-medium text-gray-100 ">Políticas de Servicio</label>
-                            </div>
-                        </div>
-                        <Button type="submit" theme="Transparent">Continuar</Button>
-                        <br /><br />
-                        <a href="#" className="ml-auto text-gray-100 text-[14px] text-gray-100 hover:underline">Olvidaste tu contraseña?</a>
-
-                        <div className="text-[14px] font-medium text-white dark:text-gray-300">Ya tienes una cuenta? <Link href="/" className="text-gray-100 hover:underline">Inicia Sessión</Link >
-                        </div>
-                    </form>
+        <div className="h-full bg-[#0064FA] flex flex-col justify-center items-center p-5"
+            style={{
+                backgroundImage: 'url(/background.png)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: '50% 100%',
+                backgroundAttachment: 'fixed'
+            }}>
+            <form className=" space-y-3 w-[100%] max-w-[350px]" onSubmit={registerHandler} >
+                <div className='w-full text-center flex justify-center'>
+                    <Image src="/logo-main.svg" width="200" height="200" alt="User" />
                 </div>
-            </main>
-            {/* {success == false && <Error>ERROR: verifique e intente nuevamente</Error>}
-        {success == 'complete' && <Error>Llene todo el formulario</Error>} */}
+                <br />
+                <br />
+                <h5 className="text-[24px] text-center font-medium text-white">Registrate</h5>
+                <br />                        <div>
+                    <label htmlFor="email" className="block mb-2 text-[16px] text-left font-medium text-white">Nombre</label>
+                    <Input type="text" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" required />
+                </div>
+                <div>
+                    <label htmlFor="email" className="block mb-2 text-[16px] text-left font-medium text-white">Tipo de cuenta</label>
+                    <Select arr={['Cliente', 'Medico', 'Clinica', 'Distribuidor']} name='rol' click={onClickHandler} />
+                </div>
+                <div>
+                    <label htmlFor="password" className="block mb-2 text-[16px] text-left  font-medium text-white">Ciudad</label>
+                    <Select arr={['La Paz', 'Cochabamba', 'Santa Cruz']} name='Ciudad' click={onClickHandlerCity} />
+                </div>
+                <div className="flex items-start">
+                    <div className="flex items-start">
+                        <div className="flex items-center h-5">
+                            <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                        </div>
+                        <label htmlFor="remember" className="ml-2 text-[14px] font-medium text-gray-100 ">Políticas de Servicio</label>
+                    </div>
+                </div>
+                <Button type="submit" theme="Transparent">Continuar</Button>
+                <br />
+                <div className="text-[14px] text-center font-medium text-white dark:text-gray-300">Ya tienes una cuenta? <Link href="/" className="text-gray-100 hover:underline">Inicia Sessión</Link >
+                </div>
+            </form>
         </div>
-
     )
 }
 
