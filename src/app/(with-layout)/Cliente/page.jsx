@@ -8,6 +8,8 @@ import Subtitle from '@/components/Subtitle'
 import Card from '@/components/Card'
 
 import Tag from '../../../components/Tag'
+import Cart from '../../../components/Cart'
+
 import { useRouter } from 'next/navigation';
 
 import { WithAuth } from '@/HOCs/WithAuth'
