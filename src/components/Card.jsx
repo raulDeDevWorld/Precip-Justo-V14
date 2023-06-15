@@ -22,8 +22,8 @@ export default function Card({ nombre, costo, url, empresa, descripcion }) {
 
 
     return (
-        <div class="relative w-full flex flex-around rounded-[15px] border border-gray-200 rounded-[20px] shadow overflow-hidden mt-5">
-            <div class=" p-4 flex flex-col justify-between leading-normal">
+        <div class="relative w-full h-[150px] max-w-[500px] rounded-[15px] border border-gray-200 rounded-[20px] shadow overflow-hidden mt-5" style={{display: 'grid', gridTemplateColumns:'auto 150px'}}>
+            <div class=" p-4  flex flex-col justify-between leading-normal">
                 <div class="mb-8">
                     <div class=" font-bold text-xl mb-2 text-[#00A582]">
                         {nombre}
@@ -42,8 +42,7 @@ export default function Card({ nombre, costo, url, empresa, descripcion }) {
             <div className="absolute bottom-3 right-3" >
                 <Button theme='Primary'>Añadir</Button>
             </div>
-            <div class="h-48 w-[100px] bg-cover rounded-t text-center" style={{ backgroundImage: `url(${url})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
-
+            <div class="h-[150px] w-[150px] rounded-t text-center" style={{ backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
         </div>
     )
 }

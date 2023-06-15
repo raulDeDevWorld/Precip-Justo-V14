@@ -45,7 +45,7 @@ function Home() {
             </div>
             <br />
 
-            <div  className="relative w-full px-5">
+            <div  className="relative w-full flex flex-col items-center justify-center px-5">
                 {productDB !== null && productDB !== undefined &&
                     productDB.map((i, index) =>
                         <Card nombre={i.nombre} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i.descripcion} />
