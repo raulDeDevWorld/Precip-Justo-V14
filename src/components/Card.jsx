@@ -22,10 +22,10 @@ export default function Card({ nombre, costo, url, empresa, descripcion }) {
 
 
     return (
-        <div class="relative w-full h-[150px] max-w-[500px] rounded-[15px] border border-gray-200 rounded-[20px] shadow overflow-hidden mt-5" style={{display: 'grid', gridTemplateColumns:'auto 150px'}}>
+        <div class="relative w-full h-[180px] max-w-[500px] rounded-[15px] border border-gray-200 rounded-[20px] shadow overflow-hidden mt-5" style={{display: 'grid', gridTemplateColumns:'auto 150px'}}>
             <div class=" p-4  flex flex-col justify-between leading-normal">
                 <div class="mb-8">
-                    <div class=" font-bold text-xl mb-2 text-[#00A582]">
+                    <div class=" font-bold text-[18px] mb-2 text-gray-950">
                         {nombre}
                     </div>
                     <p class="text-gray-700 text-base">{empresa}</p>
@@ -35,14 +35,14 @@ export default function Card({ nombre, costo, url, empresa, descripcion }) {
                     <p class="text-gray-700 text-base">{descripcion}</p>
                 </div>
                 <div class="flex items-baseline text-gray-900 dark:text-white">
-                    <span class="text-[12px] font-semibold">BOB</span>
-                    <span class="text-xl font-extrabold tracking-tight">{costo}</span>
+                    <span class="text-[12px] text-red-600 font-semibold">BOB</span>
+                    <span class="text-[18px]  text-red-600 font-extrabold tracking-tight">{costo}</span>
                 </div>
             </div>
             <div className="absolute bottom-3 right-3" >
                 <Button theme='Primary'>Añadir</Button>
             </div>
-            <div class="h-[150px] w-[150px] rounded-t text-center" style={{ backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
+            <div class="h-[180px] w-[180px] rounded-t text-center" style={{ backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
         </div>
     )
 }
