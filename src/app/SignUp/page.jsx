@@ -35,18 +35,17 @@ export default function Home() {
   console.log(user)
   return (
 
-    <div className="h-full bg-[#0064FA] flex flex-col justify-center items-center p-5"
+    <div className="min-h-full bg-[#0064FA] flex flex-col justify-center items-center p-5"
       style={{
         backgroundImage: 'url(/background.png)',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: '50% 100%',
         backgroundAttachment: 'fixed'
       }}>
-      <form className=" space-y-6 w-[100%] max-w-[350px]" onSubmit={signUpHandler} >
+      <form className="space-y-6 lg:space-y-3 w-[100%] max-w-[350px]" onSubmit={signUpHandler} >
         <div className='w-full text-center flex justify-center'>
-          <Image src="/logo-main.svg" width="200" height="200" alt="User" />
+          <Image src="/logo-main.svg" width="150" height="150" alt="User" />
         </div>
-        <br />
         <br />
         <h5 className="text-[24px] text-center font-medium text-white">Registrate</h5>
         <br />

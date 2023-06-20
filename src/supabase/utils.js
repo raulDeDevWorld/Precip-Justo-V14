@@ -5,8 +5,10 @@ import { supabase } from './config'
 const onAuth = (setUserProfile) => {
     supabase.auth.onAuthStateChange((event, session) => {
         session && readUserData('Users', session.user.id, {}, setUserProfile, null, { uuid: session.user.id, rol: undefined })
+        // (rute, uuid, context, updateContext, key, data)
         // const uuid = session.user.id
         // readUserData('Users', uuid, user, setUserProfile)
+        // setUserProfile()
     })
 }
 
@@ -44,6 +46,8 @@ const writeUserData = async (rute, object, uuid, context, updateContext, setUser
     console.log(result)
 
 }
+// ('Users', session.user.id, {}, setUserProfile, null, { uuid: session.user.id, rol: undefined })
+
 const readUserData = async (rute, uuid, context, updateContext, key, data) => {
 
     const result = await supabase
@@ -51,7 +55,7 @@ const readUserData = async (rute, uuid, context, updateContext, key, data) => {
         .select()
         .eq('uuid', uuid)
         console.log(result)
-
+console.log(result.data)
     if ( result.data !== null && result.data.length !== 0) {
         console.log('act')
         key ? updateContext({ ...context, [key]: result.data[0] }) : updateContext(result.data[0])

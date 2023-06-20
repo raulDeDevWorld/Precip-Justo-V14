@@ -36,13 +36,13 @@ function Home() {
 
 
     useEffect(() => {
+        console.log(user)
         if (user) readUserData('Users', user.uuid, userDB, setUserData)
         if (user && user.rol) router.push('/Cliente')
     }, [user]);
 
-    console.log(user)
     return (
-        <div className="h-full bg-[#0064FA] flex flex-col justify-center items-center p-5"
+        <div className="min-h-full bg-[#0064FA] flex flex-col justify-center items-center p-5"
             style={{
                 backgroundImage: 'url(/background.png)',
                 backgroundRepeat: 'no-repeat',
@@ -51,9 +51,8 @@ function Home() {
             }}>
             <form className=" space-y-3 w-[100%] max-w-[350px]" onSubmit={registerHandler} >
                 <div className='w-full text-center flex justify-center'>
-                    <Image src="/logo-main.svg" width="200" height="200" alt="User" />
+                    <Image src="/logo-main.svg" width="150" height="150" alt="User" />
                 </div>
-                <br />
                 <br />
                 <h5 className="text-[24px] text-center font-medium text-white">Registrate</h5>
                 <br />                        <div>

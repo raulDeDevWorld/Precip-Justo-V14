@@ -42,11 +42,10 @@ export default function Home() {
         backgroundPosition: '50% 100%',
         backgroundAttachment: 'fixed'
       }}>
-      <form className=" space-y-6 w-[100%] max-w-[350px]" onSubmit={signInHandler} >
+      <form className=" space-y-6 lg:space-y-3 w-[100%] max-w-[350px]" onSubmit={signInHandler} >
         <div className='w-full text-center flex justify-center'>
-          <Image src="/logo-main.svg" width="200" height="200" alt="User" />
+          <Image src="/logo-main.svg" width="150" height="150" alt="User" />
         </div>
-        <br />
         <br />
         <h5 className="text-[24px] text-center font-medium text-white">Iniciar Sesión</h5>
         <br />
