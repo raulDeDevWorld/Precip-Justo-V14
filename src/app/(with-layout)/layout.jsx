@@ -40,12 +40,9 @@ function Home({ children }) {
             <span className="sr-only">Open menu</span>
             <svg className="w-9 h-9" aria-hidden="true" fill="#0064FA" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"  ></path></svg>
           </button>
-
           {/* <a className="flex items-center">
             <img src="/logo-dark.svg" className="h-12 mr-3" alt="Flowbite Logo" />
           </a> */}
-
-
           <div className="relative">
             <div className="absolute inset-y-0 right-0 flex items-center pl-3 pointer-events-none">
               <svg className="w-5 h-5 text-white" aria-hidden="true" fill="text-gray-100" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
@@ -53,13 +50,12 @@ function Home({ children }) {
             </div>
             <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-[14px] text-gray-950 border-b border-gray-300  bg-transparent focus:ring-white focus:border-white focus:outline-transparent" placeholder="Busca tu producto..." />
           </div>
-
           <Cart />
-
-
         </div>
-
       </nav>
+
+
+
       <main className="min-w-screen p-5">
         <div className={`absolute top-0 items-center justify-between w-1/2 h-screen bg-[#0064FA] h-screen md:flex md:w-auto  transition-all	z-0 ${nav ? 'left-0' : 'left-[-400px]'} z-50`} >
           <h5 id="drawer-navigation-label" class="text-base font-semibold text-white uppercase dark:text-gray-400">Menu</h5>
@@ -106,7 +102,7 @@ function Home({ children }) {
         {children}
       </main>
 
-      {user !== undefined && <div className="fixed bottom-0 left-0 z-50 w-full h-[70px] bg-[#0064FA] border-t border-gray-200 rounded-t-[40px]">
+      {user !== undefined && <div className="fixed bottom-0 left-0 z-50 w-full h-[60px] bg-[#0064FA] border-t border-gray-200 rounded-t-[40px]">
         <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
           <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Transacciones`)}>
             <svg class="w-9 h-9 mb-1 text-white  group-hover:text-blue-600 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -152,8 +148,8 @@ function Home({ children }) {
 
 
 export default Home
-                  {/* <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg> */}
-                 
+{/* <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg> */ }
+
 {/* <ul id="dropdown-example" class="hidden py-2 space-y-2">
                   <li>
                     <a href="#" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
