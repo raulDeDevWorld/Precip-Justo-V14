@@ -16,36 +16,86 @@ import Button from '@/components/Button'
 
 
 
-export default function Card({ nombre, costo, url, empresa, descripcion }) {
+export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, descripcion }) {
 
 
 
 
     return (
-        <div class="relative w-full h-[180px] max-w-[500px] rounded-[15px] border border-gray-200 rounded-[20px] shadow overflow-hidden mt-5" style={{display: 'grid', gridTemplateColumns:'auto 150px'}}>
-            <div class=" p-4  flex flex-col justify-between leading-normal">
-                <div class="mb-8">
+        <div class="relative w-full bg-white min-h-[180px] max-w-[500px] rounded-[15px] rounded-[20px] shadow overflow-hidden mt-5">
+            {/* <div class="max-h-[40vh] w-[40vh] rounded-t text-center " style={{ backgroundImage: `url(${url})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div> */}
+            <img src={url} class="max-h-[40vh] w-[40vh]" alt="" />
+            
+            <div className="flex items-center justify-between px-5">
+                <div >
                     <div class=" font-bold text-[18px] mb-2 text-gray-950">
-                        {nombre}
+                        {nombre1}
+                    </div>
+                    <div class=" font-bold text-[18px] mb-2 text-gray-600">
+                        {nombre2}
+                    </div>
+                    <div class=" font-bold text-[18px] mb-2 text-gray-600">
+                        {nombre3}
                     </div>
                     <p class="text-gray-700 text-base">{empresa}</p>
+                    <div class="mb-8">
+                        <p class="text-gray-700 text-[16px]">{descripcion}</p>
+                    </div>
                 </div>
-                <div class="mb-8">
+            </div>
 
-                    <p class="text-gray-700 text-base">{descripcion}</p>
+
+            <div className='grid grid-cols-2 gap-2 px-6 py-3'>
+                <div class=" text-gray-900 dark:text-white">
+                    <span class="text-[20px] text-red-600 font-semibold">BOB</span>
+                    <span class="text-[30px]  text-red-600 font-extrabold tracking-tight">{costo}</span>
                 </div>
-                <div class="flex items-baseline text-gray-900 dark:text-white">
-                    <span class="text-[12px] text-red-600 font-semibold">BOB</span>
-                    <span class="text-[18px]  text-red-600 font-extrabold tracking-tight">{costo}</span>
-                </div>
+                <Button theme='MiniPrimary' >Comprar</Button>
             </div>
-            <div className="absolute bottom-3 right-3" >
-                <Button theme='Primary'>Añadir</Button>
-            </div>
-            <div class="h-[180px] w-[180px] rounded-t text-center" style={{ backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
+            {/* <div className='h-[50px] bg-[#0064FA] text-[16px] text-white flex justify-center items-center'>{empresa}</div> */}
         </div>
+
+
     )
 }
+
+
+
+
+
+
+
+
+// <div class="relative w-full min-h-[180px] max-w-[500px] rounded-[15px] border border-gray-200 rounded-[20px] shadow overflow-hidden mt-5" style={{display: 'grid', gridTemplateColumns:'auto 150px'}}>
+//             <div class=" p-4  flex flex-col justify-between leading-normal">
+//                 <div class="mb-8">
+//                     <div class=" font-bold text-[18px] mb-2 text-gray-950">
+//                         {nombre1}
+//                     </div>
+//                     <div class=" font-bold text-[18px] mb-2 text-gray-950">
+//                         {nombre2}
+//                     </div>
+//                     <div class=" font-bold text-[18px] mb-2 text-gray-950">
+//                         {nombre3}
+//                     </div>
+//                     <p class="text-gray-700 text-base">{empresa}</p>
+//                 </div>
+//                 <div class="mb-8">
+//                     <p class="text-gray-700 text-base">{descripcion}</p>
+//                 </div>
+// <div class="flex items-baseline text-gray-900 dark:text-white">
+//     <span class="text-[12px] text-red-600 font-semibold">BOB</span>
+//     <span class="text-[18px]  text-red-600 font-extrabold tracking-tight">{costo}</span>
+// </div>
+//             </div>
+//             <div className="absolute bottom-3 right-3" >
+//                 <Button theme='Primary'>Añadir</Button>
+//             </div>
+//             <div class="h-[180px] w-[180px] rounded-t text-center" style={{ backgroundImage: `url(${url})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
+//         </div>
+
+
+
 
 
 {/* <div className="flex items-center justify-between p-5">

@@ -36,19 +36,30 @@ function Home() {
     return (
 
         <main className="">
+            <div className="bg-gray-50 px-5 py-16 rounded-b-[50px]">
+
+            <Subtitle htmlFor="">Disponibilidad</Subtitle>
+            <div className="flex flex-wrap justify-between">
+                <Tag theme='Primary'>Disponible</Tag>
+                <Tag theme='Secondary'>Inmediato</Tag>
+                <Tag theme='Secondary'>No disponible</Tag>
+            </div>
             <Subtitle htmlFor="">Categorias</Subtitle>
             <div className="flex flex-wrap justify-between">
-                <Tag styled='tagPrimary'>Recientes</Tag>
-                <Tag styled='tagSecondary'>En oferta</Tag>
-                <Tag styled='tagSecondary'>Recientes</Tag>
-                <Tag styled='tagSecondary'>Otros</Tag>
+                <Tag theme='Primary'>Titanio</Tag>
+                <Tag theme='Secondary'>Acero</Tag>
+                <Tag theme='Secondary'>Otros</Tag>
             </div>
+
+
+            </div>
+
             <br />
 
-            <div  className="relative w-full flex flex-col items-center justify-center px-5">
+            <div  className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
                 {productDB !== null && productDB !== undefined &&
                     productDB.map((i, index) =>
-                        <Card nombre={i.nombre} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i.descripcion} />
+                        <Card nombre1={i['nombre de producto 1']} nombre2={i['nombre de producto 2']} nombre3={i['nombre de producto 3']} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i.descripcion} />
                     )
                 }
             </div>

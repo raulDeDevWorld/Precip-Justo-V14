@@ -41,8 +41,8 @@ const writeUserData = async (rute, object, uuid, context, updateContext, setUser
     const result = await supabase
         .from(rute)
         .insert(object)
-        setUserSuccess ? setUserSuccess(msg) : ''
-    result.status == 201 ? readUserData(rute, uuid, context, updateContext, key): (setUserSuccess ? setUserSuccess(msg) : '')
+    setUserSuccess ? setUserSuccess(msg) : ''
+    result.status == 201 ? readUserData(rute, uuid, context, updateContext, key) : (setUserSuccess ? setUserSuccess(msg) : '')
     console.log(result)
 
 }
@@ -54,9 +54,9 @@ const readUserData = async (rute, uuid, context, updateContext, key, data) => {
         .from(rute)
         .select()
         .eq('uuid', uuid)
-        console.log(result)
-console.log(result.data)
-    if ( result.data !== null && result.data.length !== 0) {
+    console.log(result)
+    console.log(result.data)
+    if (result.data !== null && result.data.length !== 0) {
         console.log('act')
         key ? updateContext({ ...context, [key]: result.data[0] }) : updateContext(result.data[0])
     } else {
@@ -66,14 +66,14 @@ console.log(result.data)
 
 
 const readUserAllData = async (rute, context, updateContext) => {
-    
+
     const result = await supabase
-    .from(rute)
-    .select()
+        .from(rute)
+        .select()
     console.log(result.data)
 
-       return  updateContext(result.data)
-    
+    return updateContext(result.data)
+
 }
 
 const updateUserData = async (rute, object, uuid) => {
@@ -82,7 +82,7 @@ const updateUserData = async (rute, object, uuid) => {
         .update(object)
         .eq('uuid', uuid)
 
-        console.log(object)
+    console.log(object)
 }
 
 
