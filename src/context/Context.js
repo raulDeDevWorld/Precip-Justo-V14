@@ -9,6 +9,7 @@ export function UserProvider({ children }) {
 
 	const [user, setUser] = useState(undefined)
 	const [userDB, setUserDB] = useState(undefined)
+	const [distributorPDB, setDistributorPDB] = useState(undefined)
 	const [productDB, setProduct] = useState(undefined)
 	const [item, setItem] = useState(undefined)
 
@@ -25,6 +26,9 @@ export function UserProvider({ children }) {
 	const setUserData = (data) => {
 		setUserDB(data)
 	}
+	const setUserDistributorPDB = (data) => {
+		setDistributorPDB(data)
+	}
 	const setUserProduct = (data) => {
 		setProduct(data)
 	}
@@ -39,17 +43,19 @@ export function UserProvider({ children }) {
 		return ({
 			user,
 			userDB,
+			distributorPDB,
 			productDB,
 			item,
 			success,
 			setUserProfile,
 			setUserData,
+			setUserDistributorPDB,
 			setUserProduct,
 			setUserSuccess,
 			setUserItem
 
 		})
-	}, [user, userDB, success, productDB, item])
+	}, [user, userDB, distributorPDB, success, productDB, item])
 
 	return (
 		<UserContext.Provider value={value} >

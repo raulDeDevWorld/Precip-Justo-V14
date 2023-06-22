@@ -48,17 +48,17 @@ const writeUserData = async (rute, object, uuid, context, updateContext, setUser
 }
 // ('Users', session.user.id, {}, setUserProfile, null, { uuid: session.user.id, rol: undefined })
 
-const readUserData = async (rute, uuid, context, updateContext, key, data) => {
+const readUserData = async (rute, uuid, context, updateContext, key, data, eq, arr) => {
 
     const result = await supabase
         .from(rute)
         .select()
-        .eq('uuid', uuid)
+        .eq(eq ? eq :'uuid', uuid)
     console.log(result)
     console.log(result.data)
     if (result.data !== null && result.data.length !== 0) {
         console.log('act')
-        key ? updateContext({ ...context, [key]: result.data[0] }) : updateContext(result.data[0])
+        key ? updateContext({ ...context, [key]: result.data[0] }) : updateContext(arr == true ? result.data : result.data[0])
     } else {
         updateContext(data)
     }

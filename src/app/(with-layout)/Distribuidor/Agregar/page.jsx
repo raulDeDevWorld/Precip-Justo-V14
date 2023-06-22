@@ -73,21 +73,12 @@ function Home() {
         e.preventDefault()
         const date = new Date().getTime()
 
-        writeUserData('Producto', { ...state, uuid: user.uuid + date}, user.uuid, userDB, setUserData, setUserSuccess, 'Se ha guardado correctamente', 'Perfil')
+        writeUserData('Producto', { ...state, uuid: user.uuid + date, distribuidor: user.uuid}, user.uuid, userDB, setUserData, setUserSuccess, 'Se ha guardado correctamente', 'Perfil')
         uploadStorage('Producto', postImage, user.uuid + date, updateUserData)
         // router.push('/Clinica/Perfil')
     }
 
     console.log(state)
-
-
-
-
-
-
-
-
-
 
     return (
         <form className='px-5 py-[70px]' >
