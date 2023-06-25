@@ -54,7 +54,7 @@ function Home({ children }) {
         </div>
       </nav>
 
-      <div className={`fixed top-[60px] border-l-8 border-r-4 border-white justify-between  h-screen bg-gray-50 h-screen md:flex md:w-auto  transition-all	z-0 ${nav ? 'left-0' : 'left-[-400px] w-1/2 md-w-[220px] lg:left-[-18vw] '} lg:w-[20vw]  z-50`} >
+      <div className={`fixed top-[60px] w-[220px] border-l-8 border-r-4 border-white h-screen bg-gray-50 h-screen transition-all	z-50 ${nav ? 'left-0  ' : 'left-[-220px] lg:left-[-190px] '}`} >
         {/* <h5 id="drawer-navigation-label" class="text-base font-semibold text-white uppercase dark:text-gray-400">Menu</h5> */}
     
         <div class="py-4 overflow-y-auto ">
@@ -103,7 +103,7 @@ function Home({ children }) {
         </button>
       </div>
 
-      <main className={`relative min-w-screen my-[0px] lg:pr-[2vw] transition-all ${nav ? 'w-screen pl-[50vw] md:left-[0px] md:pl-[220px] md:w-screen  lg:left-[20vw] lg:pl-[2vw] lg:w-[79vw]' : 'lg:pl-[4vw]'}`}>
+      <main className={`relative min-w-screen my-[0px] lg:pr-[2vw] transition-all ${nav ? 'w-screen pl-[220px] md:pl-[260px] md:pt-[40px] md:pr-[50px]' : 'md:pl-[50px] md:pt-[40px] md:pr-[50px]'}`}>
         {children}
       </main>
 
