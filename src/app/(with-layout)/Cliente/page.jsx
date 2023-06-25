@@ -59,7 +59,7 @@ function Home() {
             <div  className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
                 {productDB !== null && productDB !== undefined &&
                     productDB.map((i, index) =>
-                        <Card nombre1={i['nombre de producto 1']} nombre2={i['nombre de producto 2']} nombre3={i['nombre de producto 3']} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i.descripcion} />
+                        <Card nombre1={i['nombre de producto 1']} nombre2={i['nombre de producto 2']} nombre3={i['nombre de producto 3']} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i['descripcion basica']} />
                     )
                 }
             </div>
@@ -72,15 +72,4 @@ export default WithAuth(Home)
 
 
 
-          // <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                //         <p>
-
-                //             <span>{i.nombre}</span><span>{i.costo}</span>
-                //         </p>
-                //         <img src={i.url} alt="" />
-                //         <div>
-                //             <Button theme='Primary' styled='miniButtonSecondaryGreen' click={() => seeMore(i)}>Ver +</Button>
-                //             <Button theme='Success' click={seeMore}>Comprar</Button>
-                //         </div>
-                //         <span className='text-center'>{i.empresa}</span>
-                //     </div>
+   
