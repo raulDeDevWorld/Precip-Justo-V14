@@ -35,8 +35,10 @@ function Home() {
 
     return (
 
-        <main className="">
-            <div className="bg-gray-50 px-5 py-16 rounded-b-[50px]">
+        <main className="overflow-x-auto">
+            <div className="w-screen">
+
+                  <div className="bg-gray-50 px-5 py-16 rounded-b-[50px]">
 
             <Subtitle htmlFor="">Disponibilidad</Subtitle>
             <div className="flex flex-wrap justify-between">
@@ -62,7 +64,9 @@ function Home() {
                         <Card nombre1={i['nombre de producto 1']} nombre2={i['nombre de producto 2']} nombre3={i['nombre de producto 3']} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i['descripcion basica']} />
                     )
                 }
+            </div>       
             </div>
+   
         </main>
     )
 }
