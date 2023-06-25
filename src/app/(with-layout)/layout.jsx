@@ -54,7 +54,7 @@ function Home({ children }) {
         </div>
       </nav>
 
-      <div className={`fixed top-[60px] w-[220px] border-l-8 border-r-4 border-white h-screen bg-gray-50 h-screen transition-all	z-50 ${nav ? 'left-0  ' : 'left-[-220px] lg:left-[-190px] '}`} >
+      <div className={`fixed top-[60px] w-[220px] border-l-8 border-r-4 border-white h-screen bg-gray-50 h-screen transition-all	z-50 ${nav ? 'left-0  ' : 'left-[-220px] lg:left-[-200px] '}`} >
         {/* <h5 id="drawer-navigation-label" class="text-base font-semibold text-white uppercase dark:text-gray-400">Menu</h5> */}
     
         <div class="py-4 overflow-y-auto ">
@@ -92,7 +92,7 @@ function Home({ children }) {
             </li>
           </ul>
         </div>
-        <button type="button" onClick={() => setNav(!nav)} data-drawer-hide="drawer-navigation" class="absolute top-0 bottom-0 right-0 m-auto  text-gray-400 bg-transparent hover:bg-gray-200 hover:text-white rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
+        <button type="button" onClick={() => setNav(!nav)} data-drawer-hide="drawer-navigation" class="absolute top-[-0px] bottom-0 right-[0px] m-auto bg-transparent hover:bg-gray-200 hover:text-white rounded-lg px-[2px]" >
           <svg width="12" height="122" viewBox="0 0 24 122" fill="none" xmlns="http://www.w3.org/2000/svg">
             {nav
               ? <path d="M5 61L17.75 8.17245L17.75 113.828L5 61Z" fill="white" />
@@ -103,7 +103,7 @@ function Home({ children }) {
         </button>
       </div>
 
-      <main className={`relative min-w-screen my-[0px] lg:pr-[2vw] transition-all ${nav ? 'w-screen pl-[220px] md:pl-[260px] md:pt-[40px] md:pr-[50px]' : 'md:pl-[50px] md:pt-[40px] md:pr-[50px]'}`}>
+      <main className={`relative min-w-screen my-[0px] transition-all ${nav ? 'w-screen pl-[220px] md:pl-[270px] md:pt-[40px] md:pr-[50px] lg:pr-[70px]' : ' md:pt-[40px] md:px-[50px] lg:pl-[70px]'}`}>
         {children}
       </main>
 
