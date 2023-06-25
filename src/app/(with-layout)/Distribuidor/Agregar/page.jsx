@@ -132,10 +132,17 @@ function Home() {
                 </div>
 
                 <div>
-                    <Label htmlFor="">Descripción</Label>
-                    <Input type="text" name="descripcion" onChange={onChangeHandler} />
+                    <Label htmlFor="">Descripción básica</Label>
+                    <Input type="text" name="descripcion basica" onChange={onChangeHandler} />
                 </div>
-
+                <div>
+                    <Label htmlFor="">Descripción técnica</Label>
+                    <Input type="text" name="descripcion tecnica" onChange={onChangeHandler} />
+                </div>
+                  <div>
+                    <Label htmlFor="">Usu frecuente</Label>
+                    <Input type="text" name="uso frecuente" onChange={onChangeHandler} />
+                </div>
                 <div>
                     <Label htmlFor="password" className="block mb-2 text-sm text-left  font-medium ">Ciudad</Label>
                     <Select arr={['La Paz', 'Cochabamba', 'Santa Cruz']} name='ciudad' click={onClickHandlerCity} />

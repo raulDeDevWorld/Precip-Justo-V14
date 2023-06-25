@@ -26,77 +26,109 @@ function Home() {
 
     useEffect(() => {
         readUserData('Producto', user.uuid, distributorPDB, setUserDistributorPDB, null, null, 'distribuidor', true)
-    },[])
+    }, [])
     return (
-        <main className=" w-full  flex flex-col justlfy-center  items-center pt-8">
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                #
-                                {/* <span class="sr-only">Image</span> */}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Nombre
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Nombre opcional 2
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Nombre opcional 3
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Descripción basica
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Descripción tecnica
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Usos frecuentes
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Costo
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Imagen
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Disponibilidad
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Edit
-                            </th>
+        <div class="relative overflow-x-auto shadow-md ">
+            <table class="w-[1800px] text-[12px] text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-[12px] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            #
+                            {/* <span class="sr-only">Image</span> */}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nombre
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nombre opcional 2
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nombre opcional 3
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Descripción basica
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Descripción tecnica
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Usos frecuentes
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Costo
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Imagen
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Disponibilidad
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Edit
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {distributorPDB && distributorPDB !== undefined && distributorPDB.map((i, index) => {
+                        return <tr class="bg-white text-[12px] border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {index + 1}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {i['nombre de producto 1']}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {i['nombre de producto 2']}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {i['nombre de producto 3']}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {i['descripcion basica']}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {i['descripcion tecnica']}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {i['uso frecuente']}
+                            </td>
+                           
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {i['costo']}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                                {i['disponibilidad']}
+                            </td>
+                            <td class="w-32 p-4">
+                                <img src={i.url} alt="Apple Watch" />
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="#" class="font-medium text-gray-600 dark:text-red-500 hover:underline">Edit</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
+                    })
+                    }
+                </tbody>
+            </table>
+        </div>
 
-                        {distributorPDB && distributorPDB !== undefined && distributorPDB.map((i, index) => {
+    )
+}
 
-                            return <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {index + 1}
-                                </td>
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {i['nombre de producto 1']}
-                                </td>
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {i['nombre de producto 2']}
-                                </td>
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {i['nombre de producto 3']}
-                                </td>
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {i['descripcion basica']}
-                                </td>
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {i['descripcion tecnica']}
-                                </td>
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {i['uso frecuente']}
-                                </td>
-                                {/* <td class="px-6 py-4">
+
+
+
+export default WithAuth(Home)
+
+
+
+
+
+
+
+
+ {/* <td class="px-6 py-4">
                                     <div class="flex items-center space-x-3">
                                         <button class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                                             <span class="sr-only">Quantity button</span>
@@ -111,33 +143,4 @@ function Home() {
                                         </button>
                                     </div>
                                 </td> */}
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {i['costo']}
-                                </td>
-                                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {i['disponibilidad']}
-                                </td>
-                                <td class="w-32 p-4">
-                                    <img src={i.url} alt="Apple Watch" />
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
-                                </td>
-                            </tr>
-                        })
-                        }
-
-
-                    </tbody>
-                </table>
-            </div>
-
-        </main>
-    )
-}
-
-export default WithAuth(Home)
-
-
-
 

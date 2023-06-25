@@ -13,7 +13,7 @@ import Link from 'next/link'
 
 function Home({ children }) {
   const router = useRouter()
-  const { user, userDB, setUserProfile } = useUser()
+  const { user, userDB, setUserProfile, } = useUser()
 
   const [nav, setNav] = useState(false)
 
@@ -35,8 +35,8 @@ function Home({ children }) {
     <div className="pt-[65px] pb-[65px] min-h-screen bg-gray-white"  >
       <nav className="w-screen fixed top-0 border-b border-gray-200 z-50 " >
         <div className=" flex flex-wrap items-center justify-between bg-white  mx-auto p-4 h-[60px] z-50">
-        <h1 className='text-[18px]'>PRECIO JUSTO SRL</h1>
-          <button type="button" className="inline-flex items-center p-2 text-[14px] text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600" onClick={() => setNav(!nav)}>
+          <h1 className='text-[18px] hidden lg:block'>PRECIO JUSTO SRL</h1>
+          <button type="button" className="inline-flex items-center p-2 text-[14px] text-white rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 lg:hidden focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600" onClick={() => setNav(!nav)}>
             <span className="sr-only">Open menu</span>
             <svg className="w-9 h-9 text-gray-600" aria-hidden="true" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"  ></path></svg>
           </button>
@@ -54,12 +54,9 @@ function Home({ children }) {
         </div>
       </nav>
 
-      <div className={`fixed top-[60px] border-l-8 border-r-4 border-white justify-between w-1/2 h-screen bg-gray-50 h-screen md:flex md:w-auto  transition-all	z-0 ${nav ? 'left-0 left-0' : 'left-[-400px] '} lg:w-[18vw] lg:left-[0px] z-50`} >
+      <div className={`fixed top-[60px] border-l-8 border-r-4 border-white justify-between  h-screen bg-gray-50 h-screen md:flex md:w-auto  transition-all	z-0 ${nav ? 'left-0' : 'left-[-400px] w-1/2 md-w-[220px] lg:left-[-18vw] '} lg:w-[20vw]  z-50`} >
         {/* <h5 id="drawer-navigation-label" class="text-base font-semibold text-white uppercase dark:text-gray-400">Menu</h5> */}
-        <button type="button" onClick={() => setNav(!nav)} data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-white rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
-          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-          <span class="sr-only" >Close menu</span>
-        </button>
+    
         <div class="py-4 overflow-y-auto ">
           <ul class="space-y-2 text-[16px]  text-gray-600 font-medium">
             <li>
@@ -95,26 +92,38 @@ function Home({ children }) {
             </li>
           </ul>
         </div>
+        <button type="button" onClick={() => setNav(!nav)} data-drawer-hide="drawer-navigation" class="absolute top-0 bottom-0 right-0 m-auto  text-gray-400 bg-transparent hover:bg-gray-200 hover:text-white rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
+          <svg width="12" height="122" viewBox="0 0 24 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {nav
+              ? <path d="M5 61L17.75 8.17245L17.75 113.828L5 61Z" fill="white" />
+              : <path d="M19 61L6.25 113.828L6.25 8.17245L19 61Z" fill="white" />
+            }
+          </svg>
+          <span class="sr-only" >Close menu</span>
+        </button>
       </div>
 
-      <main className="relative min-w-screen my-[0px] lg:pl-[20vw] lg:pr-[2vw]">
+      <main className={`relative min-w-screen my-[0px] lg:pr-[2vw] transition-all ${nav ? 'w-screen pl-[50vw] md:left-[0px] md:pl-[220px] md:w-screen  lg:left-[20vw] lg:pl-[2vw] lg:w-[79vw]' : 'lg:pl-[4vw]'}`}>
         {children}
       </main>
 
-      {user !== undefined && <div className="fixed bottom-0 left-0 z-50 w-full h-[65px] bg-gray-50 border-t-8 border-white rounded-t-[40px]">
+      {user !== undefined && <div className="fixed bottom-0 left-0 z-50 w-full h-[65px] bg-gray-50 border-t-8 border-white rounded-t-[40px] lg:hidden">
         <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
-          <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Transacciones`)}>
-            <svg class="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
-              <path clip-rule="evenodd" fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"></path>
-            </svg>
-            {/* <span class="text-[12px] text-gray-600  group-hover:text-blue-600 ">Pagos</span> */}
-          </button>
+
+
+
           <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Cliente`)}>
             <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
             </svg>
             {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Inicio</span> */}
+          </button>
+
+          <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Productos`)}>
+            <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+
+            {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
           </button>
           <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Agregar`)}>
             <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -122,17 +131,23 @@ function Home({ children }) {
             </svg>
             {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
           </button>
-          <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`${user.rol}/Perfil`)}>
+          <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Transacciones`)}>
+
+
             <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path clipRule="evenodd" fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"></path>
+              <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path>
             </svg>
-            {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Perfil</span> */}
+
+            {/* <span class="text-[12px] text-gray-600  group-hover:text-blue-600 ">Pagos</span> */}
           </button>
-          <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`${user.rol}`)}>
+
+          <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Agregar`)}>
+
             <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
+              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
             </svg>
-            {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Config</span> */}
+
+            {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
           </button>
         </div>
       </div>}
@@ -147,6 +162,58 @@ function Home({ children }) {
 
 
 export default Home
+
+
+{/* <svg className="w-8 h-8 mb-1 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M15 20C14.1667 20 13.4583 19.7083 12.875 19.125C12.2917 18.5417 12 17.8333 12 17C12 16.8833 12.0083 16.7623 12.025 16.637C12.0417 16.5117 12.0667 16.3993 12.1 16.3L5.05 12.2C4.76667 12.45 4.45 12.646 4.1 12.788C3.75 12.93 3.38333 13.0007 3 13C2.16667 13 1.45833 12.7083 0.875 12.125C0.291667 11.5417 0 10.8333 0 10C0 9.16667 0.291667 8.45833 0.875 7.875C1.45833 7.29167 2.16667 7 3 7C3.38333 7 3.75 7.071 4.1 7.213C4.45 7.355 4.76667 7.55067 5.05 7.8L12.1 3.7C12.0667 3.6 12.0417 3.48767 12.025 3.363C12.0083 3.23833 12 3.11733 12 3C12 2.16667 12.2917 1.45833 12.875 0.875C13.4583 0.291667 14.1667 0 15 0C15.8333 0 16.5417 0.291667 17.125 0.875C17.7083 1.45833 18 2.16667 18 3C18 3.83333 17.7083 4.54167 17.125 5.125C16.5417 5.70833 15.8333 6 15 6C14.6167 6 14.25 5.92933 13.9 5.788C13.55 5.64667 13.2333 5.45067 12.95 5.2L5.9 9.3C5.93333 9.4 5.95833 9.51267 5.975 9.638C5.99167 9.76333 6 9.884 6 10C6 10.1167 5.99167 10.2377 5.975 10.363C5.95833 10.4883 5.93333 10.6007 5.9 10.7L12.95 14.8C13.2333 14.55 13.55 14.3543 13.9 14.213C14.25 14.0717 14.6167 14.0007 15 14C15.8333 14 16.5417 14.2917 17.125 14.875C17.7083 15.4583 18 16.1667 18 17C18 17.8333 17.7083 18.5417 17.125 19.125C16.5417 19.7083 15.8333 20 15 20Z" fill="#636363" />
+            </svg> */}
+
+
+// <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
+// <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Transacciones`)}>
+//   <svg class="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+//     <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+//     <path clip-rule="evenodd" fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"></path>
+//   </svg>
+//   {/* <span class="text-[12px] text-gray-600  group-hover:text-blue-600 ">Pagos</span> */}
+// </button>
+// <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Cliente`)}>
+//   <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+//     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+//   </svg>
+//   {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Inicio</span> */}
+// </button>
+// <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Agregar`)}>
+//   <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+//     <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"></path>
+//   </svg>
+//   {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
+// </button>
+// <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`${user.rol}/Perfil`)}>
+//   <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+//     <path clipRule="evenodd" fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"></path>
+//   </svg>
+//   {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Perfil</span> */}
+// </button>
+// <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`${user.rol}`)}>
+//   <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+//     <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
+//   </svg>
+//   <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Config</span>
+// </button>
+// </div>
+
+
+
+
+
+
+
+
+
+
+
+
 {/* <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg> */ }
 
 {/* <ul id="dropdown-example" class="hidden py-2 space-y-2">
