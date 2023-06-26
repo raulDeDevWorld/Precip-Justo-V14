@@ -62,6 +62,8 @@ function Home() {
         const obj = { ...state }
         delete obj[i.uuid]
         setState(obj)
+        readUserData('Producto', user.uuid, distributorPDB, setUserDistributorPDB, null, null, 'distribuidor', true)
+
     }
     console.log(postImage)
     useEffect(() => {

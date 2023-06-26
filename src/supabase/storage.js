@@ -20,15 +20,15 @@ const uploadStorage = async (rute, file, fileName, updateUserData, update) => {
             .storage
             .from(rute)
             .update(imagesRef, compressedFile, {
-                cacheControl: '3600',
-                upsert: true
+                cacheControl: '1',
+                upsert: false
             })
 
         : await supabase
             .storage
             .from(rute)
             .upload(imagesRef, compressedFile, {
-                cacheControl: '3600',
+                cacheControl: '1',
                 upsert: false
             })
 
