@@ -13,6 +13,7 @@ import Button from '@/components/Button'
 import { useMask } from '@react-input/mask';
 import { useRouter } from 'next/navigation';
 import { WithAuth } from '@/HOCs/WithAuth'
+import {generateUUID} from '@/utils/UIDgenerator'
 
 
 function Home() {
@@ -54,10 +55,8 @@ function Home() {
     function manageInputIMG(e) {
         // const fileName = `${e.target.name}`
         const file = e.target.files[0]
-
         setPostImage(file)
         setUrlPostImage(URL.createObjectURL(file))
-
     }
 
     function onChangeHandler(e) {
@@ -71,10 +70,10 @@ function Home() {
     }
     function save(e) {
         e.preventDefault()
-        const date = new Date().getTime()
+        const uid = generateUUID()
 
-        writeUserData('Producto', { ...state, uuid: user.uuid + date, distribuidor: user.uuid}, user.uuid, userDB, setUserData, setUserSuccess, 'Se ha guardado correctamente', 'Perfil')
-        uploadStorage('Producto', postImage, user.uuid + date, updateUserData)
+        writeUserData('Producto', { ...state, uuid: uid, distribuidor: user.uuid}, user.uuid, userDB, setUserData, setUserSuccess, 'Se ha guardado correctamente', 'Perfil')
+        uploadStorage('Producto', postImage, uid, updateUserData)
         // router.push('/Clinica/Perfil')
     }
 

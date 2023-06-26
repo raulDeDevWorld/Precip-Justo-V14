@@ -2,7 +2,7 @@ import { supabase } from './config'
 import imageCompression from 'browser-image-compression';
 
 
-const uploadStorage = async (rute, file, fileName, updateUserData) => {
+const uploadStorage = async (rute, file, fileName, updateUserData, update) => {
     const options = {
         maxWidthOrHeight: 500,
         maxSizeMB: 0.07,
@@ -15,20 +15,34 @@ const uploadStorage = async (rute, file, fileName, updateUserData) => {
 
     const imagesRef = `${fileName}.webp`
 
-    const result = await supabase
-        .storage
-        .from(rute)
-        .upload(imagesRef, compressedFile, {
-            cacheControl: '3600',
-            upsert: false
-        })
+    update === true
+        ? await supabase
+            .storage
+            .from(rute)
+            .update(imagesRef, compressedFile, {
+                cacheControl: '3600',
+                upsert: true
+            })
 
-        const { data } = supabase
+        : await supabase
+            .storage
+            .from(rute)
+            .upload(imagesRef, compressedFile, {
+                cacheControl: '3600',
+                upsert: false
+            })
+
+
+
+
+
+
+    const { data } = supabase
         .storage
         .from(rute)
         .getPublicUrl(imagesRef)
 
-console.log(data)
+    console.log(data)
 
     return updateUserData(rute, { url: data.publicUrl }, fileName)
 }

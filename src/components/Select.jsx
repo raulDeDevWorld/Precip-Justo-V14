@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation';
 import style from './Select.module.css'
 
 
-export default function Select({arr, name, click}) {
+export default function Select({arr, name, click, defaultValue, uuid}) {
 
     const router = useRouter()
 
     const [select, setSelect] = useState(false)
-    const [state, setState] = useState(arr[0])
+    const [state, setState] = useState(defaultValue ? defaultValue : arr[0])
 
     function handlerSelect () {
         setSelect(!select)
@@ -18,7 +18,7 @@ export default function Select({arr, name, click}) {
 
     function handlerUserState (name, i) {
         setState(i)
-        click(name, i)
+        click(name, i, uuid)
     }
 
 
@@ -40,7 +40,6 @@ export default function Select({arr, name, click}) {
                 {
                     arr.map((i)=> <li key={i} onClick={() => handlerUserState(name, i)}>{i}</li>)
                 }
-            
             </ul>
         </div>
     )

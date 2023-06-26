@@ -1,110 +1,176 @@
 'use client'
 
 import Button from '@/components/Button'
-import Subtitle from '@/components/Subtitle'
+import Select from '@/components/Select'
 import { useUser } from '@/context/Context.js'
 
 import Tag from '@/components/Tag'
 import { useRouter } from 'next/navigation';
 
 import { WithAuth } from '@/HOCs/WithAuth'
-import { useEffect } from 'react'
-import { readUserData } from '@/supabase/utils'
+import { useEffect, useState } from 'react'
+import { writeUserData, readUserData, updateUserData } from '@/supabase/utils'
+import { uploadStorage } from '@/supabase/storage'
 
 
 function Home() {
-    const { user, distributorPDB, setUserDistributorPDB, setUserItem } = useUser()
+    const { user, userDB, distributorPDB, setUserDistributorPDB, setUserItem, setUserData, setUserSuccess, } = useUser()
 
     const router = useRouter()
 
+    const [state, setState] = useState({})
+    const [postImage, setPostImage] = useState({})
+    const [urlPostImage, setUrlPostImage] = useState({})
 
     function seeMore() {
         router.push('/Producto')
     }
-
+    const onClickHandlerCategory = (name, value, uuid) => {
+        setState({ ...state, [uuid]: { ...state[uuid], uuid, ['categoria']: value } })
+    }
     console.log(distributorPDB)
 
+    console.log(state)
+    const onClickHandlerCity = (name, value, uuid) => {
+        setState({ ...state, [uuid]: { ...state[uuid], uuid, ['ciudad']: value } })
+    }
+
+    function manageInputIMG(e, uuid) {
+        // const fileName = `${e.target.name}`
+        const file = e.target.files[0]
+        setPostImage({ ...postImage, [uuid]: file })
+        setUrlPostImage({ ...urlPostImage, [uuid]: URL.createObjectURL(file) })
+        setState({ ...state, [uuid]: { ...state[uuid], uuid } })
+    }
+
+    const onClickHandlerAvailability = (name, value, uuid) => {
+        setState({ ...state, [uuid]: { ...state[uuid], uuid, ['disponibilidad']: value } })
+
+    }
+
+    function onChangeHandler(e, i) {
+        // console.log(i.uuid)
+        setState({ ...state, [i.uuid]: { ...state[i.uuid], uuid: i.uuid, [e.target.name]: e.target.value } })
+        // setState({  ...state, [e.target.name]: e.target.value })
+    }
+
+    function save(i) {
+        updateUserData('Producto', state[i.uuid], i.uuid)
+        console.log(postImage[i.uuid])
+        postImage[i.uuid] && uploadStorage('Producto', postImage[i.uuid], i.uuid, updateUserData, true)
+
+        const obj = { ...state }
+        delete obj[i.uuid]
+        setState(obj)
+    }
+    console.log(postImage)
     useEffect(() => {
         readUserData('Producto', user.uuid, distributorPDB, setUserDistributorPDB, null, null, 'distribuidor', true)
     }, [])
+
     return (
 
         <div class="relative overflow-x-auto shadow-md ">
-            <table class="w-[1800px] text-[12px] text-left text-gray-500 dark:text-gray-400">
+            <table class="w-[1800px] text-[12px] text-left text-gray-500">
                 <thead class="text-[12px] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
                             #
                             {/* <span class="sr-only">Image</span> */}
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nombre
+                        <th scope="col" class="px-3 py-3">
+                            Nombre 1
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nombre opcional 2
+                        <th scope="col" class="px-3 py-3">
+                            Nombre 2
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nombre opcional 3
+                        <th scope="col" class="px-3 py-3">
+                            Nombre 3
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
                             Descripción basica
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
                             Descripción tecnica
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
                             Usos frecuentes
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
                             Costo
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Imagen
+                        <th scope="col" class="px-3 py-3">
+                            Ciudad
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
+                            categoría
+                        </th>
+                        <th scope="col" class="px-3 py-3">
                             Disponibilidad
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-3 py-3">
+                            Imagen
+                        </th>
+                        <th scope="col" class="px-3 py-3">
                             Edit
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     {distributorPDB && distributorPDB !== undefined && distributorPDB.map((i, index) => {
-                        return <tr class="bg-white text-[12px] border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {index + 1}
+                        return <tr class="bg-white text-[12px] border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={index}>
+                            <td class="px-3 py-4  flex font-semibold text-gray-900 dark:text-white">
+                                <span className='h-full flex py-2'>{index + 1}</span>
                             </td>
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {i['nombre de producto 1']}
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <textarea id="message" rows="6" onChange={(e) => onChangeHandler(e, i)} cols="6" name='nombre de producto 1' defaultValue={i['nombre de producto 1']} class="block p-1.5  w-full h-full text-sm text-gray-900 bg-white rounded-lg  focus:ring-gray-100 focus:border-gray-100 focus:outline-none resize-x-none" placeholder="Write your thoughts here..."></textarea>
+                                {/* {i['nombre de producto 1']} */}
                             </td>
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {i['nombre de producto 2']}
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <textarea id="message" rows="6" onChange={(e) => onChangeHandler(e, i)} cols="6" name='nombre de producto 2' defaultValue={i['nombre de producto 2']} class="block p-1.5  w-full h-full text-sm text-gray-900 bg-white rounded-lg  focus:ring-gray-100 focus:border-gray-100 focus:outline-none resize-x-none" placeholder="Write your thoughts here..."></textarea>
+                                {/* {i['nombre de producto 2']} */}
                             </td>
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {i['nombre de producto 3']}
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <textarea id="message" rows="6" onChange={(e) => onChangeHandler(e, i)} cols="6" name='nombre de producto 3' defaultValue={i['nombre de producto 3']} class="block p-1.5  w-full h-full text-sm text-gray-900 bg-white rounded-lg  focus:ring-gray-100 focus:border-gray-100 focus:outline-none resize-x-none" placeholder="Write your thoughts here..."></textarea>
+                                {/* {i['nombre de producto 3']} */}
                             </td>
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {i['descripcion basica']}
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <textarea id="message" rows="6" onChange={(e) => onChangeHandler(e, i)} name='descripcion basica' defaultValue={i['descripcion basica']} class="block p-1.5  w-full h-full text-sm text-gray-900 bg-white rounded-lg  focus:ring-gray-100 focus:border-gray-100 focus:outline-none resize-x-none" placeholder="Write your thoughts here..."></textarea>
+                                {/* {i['descripcion basica']} */}
                             </td>
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {i['descripcion tecnica']}
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <textarea id="message" rows="6" onChange={(e) => onChangeHandler(e, i)} name='descripcion tecnica' defaultValue={i['descripcion tecnica']} class="block p-1.5  w-full h-full text-sm text-gray-900 bg-white rounded-lg  focus:ring-gray-100 focus:border-gray-100 focus:outline-none resize-x-none" placeholder="Write your thoughts here..."></textarea>
+                                {/* {i['descripcion tecnica']} */}
                             </td>
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {i['uso frecuente']}
+                            <td class="px-3 py-4 h-full font-semibold text-gray-900 dark:text-white">
+                                <textarea id="message" rows="6" onChange={(e) => onChangeHandler(e, i)} name='uso frecuente' defaultValue={i['uso frecuente']} class="block p-1.5  w-full h-full text-sm text-gray-900 bg-white rounded-lg  focus:ring-gray-100 focus:border-gray-100 focus:outline-none resize-x-none" placeholder="Write your thoughts here..."></textarea>
+                                {/* {i['uso frecuente']} */}
                             </td>
-                           
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {i['costo']}
+
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <textarea id="message" rows="6" onChange={(e) => onChangeHandler(e, i)} name='costo' cols="4" defaultValue={i['costo']} class="block p-1.5 h-full text-sm text-gray-900 bg-white rounded-lg  focus:ring-gray-100 focus:border-gray-100 focus:outline-none resize-x-none" placeholder="Write your thoughts here..."></textarea>
+                                {/* {i['costo']} */}
                             </td>
-                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                {i['disponibilidad']}
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <Select arr={['La Paz', 'Cochabamba', 'Santa Cruz']} name='ciudad' defaultValue={i.ciudad} uuid={i.uuid} click={onClickHandlerCity} />
+                            </td>
+
+
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <Select arr={['Titanio', 'Acero Inox', 'Otros']} name='categoria' defaultValue={i.categoria} uuid={i.uuid} click={onClickHandlerCategory} />
+                                {/* {i['costo']} */}
+                            </td>
+                            <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                                <Select arr={['Disponible', 'Disponibilidad inmediata', 'No disponible']} name='disponibilidad' defaultValue={i.disponibilidad} uuid={i.uuid} click={onClickHandlerAvailability} />
                             </td>
                             <td class="w-32 p-4">
-                                <img src={i.url} alt="Apple Watch" />
+                                <label htmlFor={`img${index}`}>
+                                    <img src={urlPostImage[i.uuid] ? urlPostImage[i.uuid] : i.url} alt="Apple Watch" />
+                                    <input id={`img${index}`} type="file" onChange={(e) => manageInputIMG(e, i.uuid)} className='hidden' />
+                                </label>
                             </td>
-                            <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-gray-600 dark:text-red-500 hover:underline">Edit</a>
+                            <td class="px-3 py-4">
+                                <Button theme={state[i.uuid] ? "Primary" : "Disable"} click={() => save(i)}>Guardar</Button>
                             </td>
                         </tr>
                     })
@@ -128,7 +194,7 @@ export default WithAuth(Home)
 
 
 
- {/* <td class="px-6 py-4">
+{/* <td class="px-3 py-4">
                                     <div class="flex items-center space-x-3">
                                         <button class="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                                             <span class="sr-only">Quantity button</span>
