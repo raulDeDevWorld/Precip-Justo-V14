@@ -54,7 +54,6 @@ function Home() {
     }
 
     console.log(user)
-
     return (
         <form >
             <h3 className='text-center text-[16px] pb-3'>Agregar Perfil</h3>
@@ -66,52 +65,9 @@ function Home() {
                 <input className="hidden" id='file' name='name' onChange={manageInputIMG} accept=".jpg, .jpeg, .png, .mp4, webm" type="file" />
             </div>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
-
-                <div>
-                    <Label htmlFor="">Nombre de la empresa</Label>
-                    <Input type="text" name="nombre" onChange={onChangeHandler} />
-                </div>
-
-                <div>
-                    <Label htmlFor="">Quienes somos</Label>
-                    <Input type="text" name="descripcion" onChange={onChangeHandler} />
-                </div>
-
-                <div>
-                    <Label htmlFor="">Ciudad</Label>
-                    <Select arr={['La Paz', 'Cochabamba', 'Santa Cruz']} name='ciudad' click={onClickHandler} />
-                </div>
-
                 <div>
                     <Label htmlFor="">Direccion</Label>
                     <Input type="text" name="direccion" onChange={onChangeHandler} />
-                </div>
-                <div>
-                    <Label htmlFor="">Dias de atención</Label>
-                    <div className="flex justify-between">
-                        <Checkbox name="L" change={onChangeHandlerCheck} />
-                        <Label htmlFor="L">L</Label>
-                        <Checkbox name="M" change={onChangeHandlerCheck} />
-                        <Label htmlFor="M">M</Label>
-                        <Checkbox name="Mi" change={onChangeHandlerCheck} />
-                        <Label htmlFor="M">M</Label>
-                        <Checkbox name="J" change={onChangeHandlerCheck} />
-                        <Label htmlFor="J">J</Label>
-                        <Checkbox name="V" change={onChangeHandlerCheck} />
-                        <Label htmlFor="V">V</Label>
-                        <Checkbox name="S" change={onChangeHandlerCheck} />
-                        <Label htmlFor="S">S</Label>
-                        <Checkbox name="D" change={onChangeHandlerCheck} />
-                        <Label htmlFor="D">D</Label>
-                    </div>
-                </div>
-                <div>
-                    <Label htmlFor="">Horarios de Atención</Label>
-                    <div className='w-full flex justify-between'>
-                        <Input type="time" name={'horarios de apertura'} onChange={onChangeHandler} />
-                        <span className='w-6/12 flex justify-center items-center'>a</span>
-                        <Input type="time" name={'horarios de cierre'} onChange={onChangeHandler} />
-                    </div>
                 </div>
                 <div>
                     <Label htmlFor="">Numero de tarjeta</Label>
@@ -139,7 +95,7 @@ function Home() {
                 </div>
             </div>
             <div className='flex w-full justify-around'>
-                <Button theme='Success' >Ver Vista Cliente</Button>
+                <Button theme='Success' >Perfil</Button>
                 <Button theme='Primary' click={save}>Guardar</Button>
             </div>
         </form>
@@ -147,15 +103,6 @@ function Home() {
 }
 
 export default WithAuth(Home)
-
-
-
-
-
-
-
-
-
 
 
 

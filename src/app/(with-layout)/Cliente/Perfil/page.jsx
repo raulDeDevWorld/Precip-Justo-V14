@@ -14,17 +14,12 @@ function Home() {
     const { user, userDB, setUserData } = useUser()
     const [state, setState] = useState({})
 
-
-
-
     const redirectHandler = (ref) => {
         router.push(ref)
     }
 
-    console.log(userDB !== undefined && userDB !== null && JSON.parse(userDB.Perfil['dias de atencion']))
-
     useEffect(() => {
-        if (user && user.rol !== undefined) readUserData(user.rol, user.uuid, userDB, setUserData, 'Perfil', null )
+        if (user && user.rol !== undefined) readUserData(user.rol, user.uuid, userDB, setUserData, 'Perfil', null)
     }, []);
     return (
         userDB !== undefined && userDB !== null ? <div className="min-h-[92vh] bg-white p-5">
@@ -66,7 +61,7 @@ function Home() {
                 <Paragraph> <img className="inline pr-5" src="/ubicacion.svg" alt="" />{userDB.Perfil['direccion']}</Paragraph>
             </div>
             <br />
-            <Button theme="Success" click={()=>redirectHandler('Distribuidor/Producto')}>Ver Productos</Button>
+            <Button theme="Success" click={() => redirectHandler('Distribuidor/Producto')}>Ver Productos</Button>
             <img className="fixed bottom-5 right-5" src="/whatsapp.svg" alt="" />
         </div> :
             <div className="flex flex-col items-center justify-center h-[80vh]">
@@ -76,7 +71,5 @@ function Home() {
             </div>
     )
 }
-
-
 
 export default WithAuth(Home)

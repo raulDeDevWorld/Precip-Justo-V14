@@ -27,7 +27,7 @@ export default function Button({ theme, styled, click, children }) {
                 </li>)}
 
             <li className='border-b border-gray-300 text-red-600 py-[6px]'>
-                 TOTAL:   {Object.values(cart).reduce((acc, i, index) => {
+                 TOTAL: {Object.values(cart).reduce((acc, i, index) => {
                     const sum = i['costo'] * i['cantidad']
                     return sum + acc
                 }, 0)} BOB
@@ -36,9 +36,6 @@ export default function Button({ theme, styled, click, children }) {
 
         </div>
     </div>)
-
-
-
 }
 
 

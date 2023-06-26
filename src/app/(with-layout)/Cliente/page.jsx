@@ -27,7 +27,11 @@ function Home() {
         router.push('/Producto')
     }
 
-    console.log(cart !== {})
+    function HandlerCheckOut() {
+        router.push('/Cliente/Comprar')
+    }
+
+
     useEffect(() => {
         readUserAllData('Producto', productDB, setUserProduct)
 
@@ -65,7 +69,7 @@ function Home() {
                 </div>
             </div>
             {Object.entries(cart).length !== 0 && <div className="fixed w-screen px-5 bottom-[65px]">
-                <Button theme="Success">Ejecutar compra</Button>
+                <Button theme="Success" click={HandlerCheckOut}>Ejecutar compra</Button>
             </div>}
         </main>
     )
