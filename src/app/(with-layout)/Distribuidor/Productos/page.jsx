@@ -28,15 +28,12 @@ function Home() {
     const onClickHandlerCategory = (name, value, uuid) => {
         setState({ ...state, [uuid]: { ...state[uuid], uuid, ['categoria']: value } })
     }
-    console.log(distributorPDB)
 
-    console.log(state)
     const onClickHandlerCity = (name, value, uuid) => {
         setState({ ...state, [uuid]: { ...state[uuid], uuid, ['ciudad']: value } })
     }
 
     function manageInputIMG(e, uuid) {
-        // const fileName = `${e.target.name}`
         const file = e.target.files[0]
         setPostImage({ ...postImage, [uuid]: file })
         setUrlPostImage({ ...urlPostImage, [uuid]: URL.createObjectURL(file) })
@@ -45,27 +42,20 @@ function Home() {
 
     const onClickHandlerAvailability = (name, value, uuid) => {
         setState({ ...state, [uuid]: { ...state[uuid], uuid, ['disponibilidad']: value } })
-
     }
 
     function onChangeHandler(e, i) {
-        // console.log(i.uuid)
         setState({ ...state, [i.uuid]: { ...state[i.uuid], uuid: i.uuid, [e.target.name]: e.target.value } })
-        // setState({  ...state, [e.target.name]: e.target.value })
     }
 
     function save(i) {
         updateUserData('Producto', state[i.uuid], i.uuid)
-        console.log(postImage[i.uuid])
         postImage[i.uuid] && uploadStorage('Producto', postImage[i.uuid], i.uuid, updateUserData, true)
-
         const obj = { ...state }
         delete obj[i.uuid]
         setState(obj)
-        readUserData('Producto', user.uuid, distributorPDB, setUserDistributorPDB, null, null, 'distribuidor', true)
-
     }
-    console.log(postImage)
+
     useEffect(() => {
         readUserData('Producto', user.uuid, distributorPDB, setUserDistributorPDB, null, null, 'distribuidor', true)
     }, [])
@@ -78,7 +68,6 @@ function Home() {
                     <tr>
                         <th scope="col" class="px-3 py-3">
                             #
-                            {/* <span class="sr-only">Image</span> */}
                         </th>
                         <th scope="col" class="px-3 py-3">
                             Nombre 1

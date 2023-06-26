@@ -1,7 +1,10 @@
 'use client';
 import { useState } from 'react'
+import { useUser } from '@/context/Context.js'
 
 export default function Button({ theme, styled, click, children }) {
+
+    const { cart, productDB, setUserProduct, setUserItem } = useUser()
 
     const [add, setAdd] = useState(false)
     const [showCart, setShowCart] = useState(false)
@@ -18,15 +21,19 @@ export default function Button({ theme, styled, click, children }) {
             <span class="sr-only">Icon description</span>
         </button>
         <div className={`absolute items-center justify-between top-[40px] w-1/2 bg-transparent md:flex md:w-auto  transition-all	z-0 ${showCart ? 'right-0' : 'right-[-400px]'}`} >
-            <ul className="flex flex-col bg-[#1D0F4A] p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
-                <li>
-                    <a href="#" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 " aria-current="page">Nosotros</a>
-                </li>
-                <li>
-                    <a href="#" className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Servicios</a>
-                </li>
+            <ul className="flex flex-col bg-gray-100 p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
+                {Object.values(cart).map((i, index) => <li className='border-b border-gray-300 py-[12px]' key={index}>
+                    {i['nombre de producto 1']} <br /> {i['costo'] * i['cantidad']} BOB
+                </li>)}
 
+            <li className='border-b border-gray-300 text-red-600 py-[6px]'>
+                 TOTAL:   {Object.values(cart).reduce((acc, i, index) => {
+                    const sum = i['costo'] * i['cantidad']
+                    return sum + acc
+                }, 0)} BOB
+                </li>
             </ul>
+
         </div>
     </div>)
 

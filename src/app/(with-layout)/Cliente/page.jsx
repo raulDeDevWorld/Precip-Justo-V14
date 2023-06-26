@@ -17,7 +17,7 @@ import { useEffect } from 'react'
 
 
 function Home() {
-    const { productDB, setUserProduct, setUserItem } = useUser()
+    const { cart, productDB, setUserProduct, setUserItem } = useUser()
 
     const router = useRouter()
 
@@ -27,7 +27,7 @@ function Home() {
         router.push('/Producto')
     }
 
-
+    console.log(cart !== {})
     useEffect(() => {
         readUserAllData('Producto', productDB, setUserProduct)
 
@@ -38,35 +38,35 @@ function Home() {
         <main className="overflow-x-auto">
             <div className="w-screen">
 
-                  <div className="bg-gray-50 px-5 py-16 rounded-b-[50px]">
+                <div className="bg-gray-50 px-5 py-16 rounded-b-[50px]">
 
-            <Subtitle htmlFor="">Disponibilidad</Subtitle>
-            <div className="flex flex-wrap justify-between">
-                <Tag theme='Primary'>Disponible</Tag>
-                <Tag theme='Secondary'>Inmediato</Tag>
-                <Tag theme='Secondary'>No disponible</Tag>
+                    <Subtitle htmlFor="">Disponibilidad</Subtitle>
+                    <div className="flex flex-wrap justify-between">
+                        <Tag theme='Primary'>Disponible</Tag>
+                        <Tag theme='Secondary'>Inmediato</Tag>
+                        <Tag theme='Secondary'>No disponible</Tag>
+                    </div>
+                    <Subtitle htmlFor="">Categorias</Subtitle>
+                    <div className="flex flex-wrap justify-between">
+                        <Tag theme='Primary'>Titanio</Tag>
+                        <Tag theme='Secondary'>Acero</Tag>
+                        <Tag theme='Secondary'>Otros</Tag>
+                    </div>
+                </div>
+
+                <br />
+
+                <div className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
+                    {productDB !== null && productDB !== undefined &&
+                        productDB.map((i, index) =>
+                            <Card nombre1={i['nombre de producto 1']} nombre2={i['nombre de producto 2']} nombre3={i['nombre de producto 3']} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i['descripcion basica']} i={i} />
+                        )
+                    }
+                </div>
             </div>
-            <Subtitle htmlFor="">Categorias</Subtitle>
-            <div className="flex flex-wrap justify-between">
-                <Tag theme='Primary'>Titanio</Tag>
-                <Tag theme='Secondary'>Acero</Tag>
-                <Tag theme='Secondary'>Otros</Tag>
-            </div>
-
-
-            </div>
-
-            <br />
-
-            <div  className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
-                {productDB !== null && productDB !== undefined &&
-                    productDB.map((i, index) =>
-                        <Card nombre1={i['nombre de producto 1']} nombre2={i['nombre de producto 2']} nombre3={i['nombre de producto 3']} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i['descripcion basica']} />
-                    )
-                }
-            </div>       
-            </div>
-   
+            {Object.entries(cart).length !== 0 && <div className="fixed w-screen px-5 bottom-[65px]">
+                <Button theme="Success">Ejecutar compra</Button>
+            </div>}
         </main>
     )
 }
@@ -76,4 +76,3 @@ export default WithAuth(Home)
 
 
 
-   

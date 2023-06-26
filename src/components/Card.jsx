@@ -1,31 +1,33 @@
-
-
-
-
-
-
-
-
-
-
 'use client';
 
-
 import Button from '@/components/Button'
+import { useUser } from '@/context/Context.js'
 
+export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, descripcion, i }) {
 
+    const { user, userDB, distributorPDB, setUserDistributorPDB, setUserItem, setUserData, setUserSuccess, cart, setUserCart } = useUser()
 
+    const addCart = () => {
+        setUserCart({ ...cart, [i.uuid]: { ...i, cantidad: 1 } })
+    }
 
-export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, descripcion }) {
+    const addPlussCart = () => {
+        setUserCart({ ...cart, [i.uuid]: { ...i, cantidad: cart[i.uuid].cantidad + 1 } })
+    }
+    const addLessCart = () => {
+        const obj = {...cart}
+        delete obj[i.uuid]
+        console.log(obj)
 
-
-
-
+        cart[i.uuid].cantidad - 1 == 0
+        ? setUserCart(obj) 
+        :setUserCart({ ...cart, [i.uuid]: { ...i, cantidad: cart[i.uuid].cantidad - 1 } })
+    }
+    console.log(cart)
     return (
         <div class="relative w-full bg-white min-h-[180px] max-w-[500px] rounded-[15px] rounded-[20px] shadow overflow-hidden mt-5">
             {/* <div class="max-h-[40vh] w-[40vh] rounded-t text-center " style={{ backgroundImage: `url(${url})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div> */}
             <img src={url} class="max-h-[40vh] w-[40vh]" alt="" />
-            
             <div className="flex items-center justify-between px-5">
                 <div >
                     <div class=" font-bold text-[18px] mb-2 text-gray-950">
@@ -43,19 +45,23 @@ export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, d
                     </div>
                 </div>
             </div>
-
-
+            {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0 && <p className='text-[16px] text-right px-5'>Cantidad: {cart[i.uuid].cantidad} </p>}
             <div className='grid grid-cols-2 gap-2 px-6 py-3'>
                 <div class=" text-gray-900 dark:text-white">
                     <span class="text-[20px] text-red-600 font-semibold">BOB</span>
                     <span class="text-[30px]  text-red-600 font-extrabold tracking-tight">{costo}</span>
                 </div>
-                <Button theme='MiniPrimary' >Comprar</Button>
+                {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0
+                    ? <div className='flex'>
+                        <Button theme='MiniSecondary' click={() => addPlussCart(i)}>+</Button>
+                        <Button theme='MiniPrimary' click={() => addLessCart(i)}>-</Button>
+                    </div>
+                    : <Button theme='MiniPrimary' click={() => addCart(i)}>Comprar</Button>
+
+                }
             </div>
             {/* <div className='h-[50px] bg-[#0064FA] text-[16px] text-white flex justify-center items-center'>{empresa}</div> */}
         </div>
-
-
     )
 }
 
