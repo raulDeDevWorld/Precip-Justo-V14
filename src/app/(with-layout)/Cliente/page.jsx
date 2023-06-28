@@ -20,17 +20,11 @@ function Home() {
     const { cart, productDB, setUserProduct, setUserItem } = useUser()
 
     const router = useRouter()
-
-
-    function seeMore(i) {
-        setUserItem(i)
-        router.push('/Producto')
-    }
+    
 
     function HandlerCheckOut() {
         router.push('/Cliente/Comprar')
     }
-
 
     useEffect(() => {
         readUserAllData('Producto', productDB, setUserProduct)
@@ -59,7 +53,7 @@ function Home() {
                 </div>
 
                 <br />
-
+                
                 <div className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
                     {productDB !== null && productDB !== undefined &&
                         productDB.map((i, index) =>

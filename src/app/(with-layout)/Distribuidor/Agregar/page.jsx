@@ -27,15 +27,11 @@ function Home() {
 
     const [check, setCheck] = useState(false)
 
-
-
     const inputRefCard = useMask({ mask: '____ ____ ____ ____', replacement: { _: /\d/ } });
     const inputRefDate = useMask({ mask: '__/__', replacement: { _: /\d/ } });
     const inputRefCVC = useMask({ mask: '___', replacement: { _: /\d/ } });
     const inputRefPhone = useMask({ mask: '+ 591 _ ___ ___', replacement: { _: /\d/ } });
     const inputRefWhatsApp = useMask({ mask: '+ 591 __ ___ ___', replacement: { _: /\d/ } });
-
-
 
     const onClickHandlerCity = (name, value) => {
         setState({ ...state, ['ciudad']: value })
