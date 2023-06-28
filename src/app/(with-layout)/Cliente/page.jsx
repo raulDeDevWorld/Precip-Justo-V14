@@ -6,7 +6,7 @@ import style from './Cliente.module.css'
 import Button from '@/components/Button'
 import Subtitle from '@/components/Subtitle'
 import Card from '@/components/Card'
-
+import QRreader from '@/components/QRreader' 
 import Tag from '../../../components/Tag'
 import Cart from '../../../components/Cart'
 
@@ -33,8 +33,10 @@ function Home() {
 
     return (
 
-        <main className="overflow-x-auto">
-            <div className="w-screen">
+        <main className="">
+            <div className="w-screen lg:w-auto">
+
+            <QRreader></QRreader>
 
                 <div className="bg-gray-50 px-5 py-16 rounded-b-[50px]">
 
@@ -62,7 +64,7 @@ function Home() {
                     }
                 </div>
             </div>
-            {Object.entries(cart).length !== 0 && <div className="fixed w-screen px-5 bottom-[65px]">
+            {Object.entries(cart).length !== 0 && <div className="fixed w-screen px-5 bottom-[65px] lg:w-[200px] lg:bottom-auto lg:top-[75px] lg:left-auto lg:right-5">
                 <Button theme="Success" click={HandlerCheckOut}>Ejecutar compra</Button>
             </div>}
         </main>

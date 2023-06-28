@@ -103,7 +103,7 @@ function Home({ children }) {
         </button>
       </div>
 
-      <main className={`relative min-w-screen my-[0px] transition-all ${nav ? 'w-screen pl-[220px] md:pl-[270px] md:pt-[40px] md:pr-[50px] lg:pr-[70px]' : ' md:pt-[40px] md:px-[50px] lg:pl-[70px]'}`}>
+      <main className={`relative min-w-screen lg:min-w-auto my-[0px] transition-all ${nav ? 'w-screen pl-[220px] md:pl-[270px] md:pt-[40px] md:pr-[50px] lg:pr-[70px]' : ' md:pt-[40px] md:px-[50px] lg:pl-[70px]'}`}>
         {children}
       </main>
 

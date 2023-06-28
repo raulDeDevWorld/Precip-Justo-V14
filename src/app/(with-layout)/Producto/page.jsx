@@ -20,9 +20,7 @@ export default function Home() {
 
     const { cart, productDB, setUserProduct, setUserCart, setUserItem, item } = useUser()
 
-
     const inputRefCard = useMask({ mask: '____ ____ ____ ____', replacement: { _: /\d/ } });
-
     const inputRefDate = useMask({ mask: '__/__', replacement: { _: /\d/ } });
     const inputRefCVC = useMask({ mask: '___', replacement: { _: /\d/ } });
     const router = useRouter()
@@ -30,17 +28,14 @@ export default function Home() {
     function HandlerCheckOut() {
         router.push('/Cliente/Comprar')
     }
-
     function seeMore() {
         router.push('/Producto')
     }
-
     const addCart = (e, i) => {
         e.preventDefault()
         e.stopPropagation()
         setUserCart({ ...cart, [i.uuid]: { ...i, cantidad: 1 } })
     }
-
     const addPlussCart = (e, i) => {
         e.preventDefault()
         e.stopPropagation()
@@ -58,11 +53,9 @@ export default function Home() {
             : setUserCart({ ...cart, [i.uuid]: { ...i, cantidad: cart[i.uuid].cantidad - 1 } })
     }
 
-
-
     console.log(item)
     return (
-        item !== undefined ? <main className="p-5 lg:w-full lg:flex lg:justify-between lg:items-center pt-[20px] pb-[60px]">
+        item !== undefined ? <main className="p-5  flex flex-col items-center lg:flex-row lg:justify-between lg:items-center pt-[20px] pb-[60px]">
             <div className='flex flex-wrap justify-center lg:justify-start max-w-[400px]'>
                 <img src={item.url} className='w-[90vw] max-w-[400px]' alt="" />
                 <div className='w-full flex justify-end  items-center p-4 '>
