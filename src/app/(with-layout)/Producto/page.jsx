@@ -62,29 +62,38 @@ export default function Home() {
 
     console.log(item)
     return (
-
-
-        item !== undefined ? <main className="p-5 pt-[20px] pb-[60px]">
-            <img src={item.url} alt="" />
-            <div className='w-full flex justify-end  items-center p-4'>
-                <div class="flex items-baseline text-gray-900">
-                    <span class="text-[16px] text-gray-600 font-semibold">BOB</span>
-                    <span class="text-[30px]  text-gray-600 font-extrabold tracking-tight">{item.costo}</span>
+        item !== undefined ? <main className="p-5 lg:w-full lg:flex lg:justify-between lg:items-center pt-[20px] pb-[60px]">
+            <div className='flex flex-wrap justify-center lg:justify-start max-w-[400px]'>
+                <img src={item.url} className='w-[90vw] max-w-[400px]' alt="" />
+                <div className='w-full flex justify-end  items-center p-4 '>
+                    <div class="flex items-baseline text-gray-900">
+                        <span class="text-[16px] text-gray-600 font-semibold">BOB</span>
+                        <span class="text-[30px]  text-gray-600 font-extrabold tracking-tight">{item.costo}</span>
+                    </div>
                 </div>
             </div>
-            <h3 className={style.subtitle}>{item.nombre}</h3>
             <br />
-            <Subtitle>Descripción basica</Subtitle>
-            <p className={style.paragraph}>{item['descripcion basica']}</p>
-            <br />
-            <Subtitle>Descripción tecnica</Subtitle>
-            <p className={style.paragraph}>{item['descripcion tecnica']}</p>
-            <br />
-            <Subtitle>Uso frecuente</Subtitle>
-            <p className={style.paragraph}>{item['uso frecuente']}</p>
-            <br />
-            <Subtitle>Cantidad</Subtitle>
-                <div className='flex w-full justify-between items-center pr-4'>
+            <div className='lg:pl-12'>
+                <div class=" font-bold text-[16px] mb-2 text-gray-950">
+                    {item['nombre de producto 1']}
+                </div>
+                <div class=" font-bold text-[16px] mb-2 text-gray-950">
+                    {item['nombre de producto 2']}
+                </div>
+                <div class=" font-bold text-[16px] mb-2 text-gray-950">
+                    {item['nombre de producto 3']}
+                </div>                
+                <Subtitle>Descripción basica</Subtitle>
+                <p className={style.paragraph}>{item['descripcion basica']}</p>
+                <br />
+                <Subtitle>Descripción tecnica</Subtitle>
+                <p className={style.paragraph}>{item['descripcion tecnica']}</p>
+                <br />
+                <Subtitle>Uso frecuente</Subtitle>
+                <p className={style.paragraph}>{item['uso frecuente']}</p>
+                <br />
+                <Subtitle>Cantidad</Subtitle>
+                <div className='relative flex w-full justify-between items-center pr-4'>
                     {cart && cart[item.uuid] && cart[item.uuid].cantidad !== undefined && cart[item.uuid].cantidad !== 0 && <span className='text-[16px] text-right px-5'>Cantidad: {cart[item.uuid].cantidad} </span>}
 
                     {cart && cart[item.uuid] && cart[item.uuid].cantidad !== undefined && cart[item.uuid].cantidad !== 0
@@ -95,10 +104,11 @@ export default function Home() {
                         : <Button theme='MiniPrimary' click={(e) => addCart(e, item)}>Comprar</Button>
                     }
                 </div>
-            <br />
-            {Object.entries(cart).length !== 0 && <div className="fixed w-screen px-5 right-0 bottom-[65px]">
-                <Button theme="Success" click={HandlerCheckOut}>Ejecutar compra</Button>
-            </div>}
+                <br />
+                {Object.entries(cart).length !== 0 && <div className="fixed w-screen lg:w-full lg:relative px-5 right-0 bottom-[65px] lg:right-auto lg:bottom-auto">
+                    <Button theme="Success" click={HandlerCheckOut}>Ejecutar compra</Button>
+                </div>}
+            </div>
         </main> : <div ></div>
     )
 }
