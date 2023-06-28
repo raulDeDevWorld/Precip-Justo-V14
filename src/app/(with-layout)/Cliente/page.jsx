@@ -6,7 +6,7 @@ import style from './Cliente.module.css'
 import Button from '@/components/Button'
 import Subtitle from '@/components/Subtitle'
 import Card from '@/components/Card'
-import QRreader from '@/components/QRreader' 
+import QRreader from '@/components/QRreader'
 import Tag from '../../../components/Tag'
 import Cart from '../../../components/Cart'
 
@@ -20,7 +20,7 @@ function Home() {
     const { cart, productDB, setUserProduct, setUserItem } = useUser()
 
     const router = useRouter()
-    
+
 
     function HandlerCheckOut() {
         router.push('/Cliente/Comprar')
@@ -35,8 +35,9 @@ function Home() {
 
         <main className="">
             <div className="w-screen lg:w-auto">
-
-            <QRreader></QRreader>
+                <div className='h-[50px]'>
+                    <QRreader></QRreader>
+                </div>
 
                 <div className="bg-gray-50 px-5 py-16 rounded-b-[50px]">
 
@@ -55,11 +56,11 @@ function Home() {
                 </div>
 
                 <br />
-                
+
                 <div className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
                     {productDB !== null && productDB !== undefined &&
                         productDB.map((i, index) =>
-                            <Card nombre1={i['nombre de producto 1']} nombre2={i['nombre de producto 2']} nombre3={i['nombre de producto 3']} costo={i.costo} url={i.url} empresa={i.empresa} descripcion={i['descripcion basica']} i={i} />
+                            <Card i={i} />
                         )
                     }
                 </div>

@@ -33,23 +33,23 @@ function Home({ children }) {
 
   return (
     <div className="pt-[65px] pb-[65px] min-h-screen bg-gray-white"  >
+
       <nav className="w-screen fixed top-0 border-b border-gray-200 z-50 " >
-        <div className=" flex flex-wrap items-center justify-between bg-white  mx-auto p-4 h-[60px] z-50">
+        <div className=" flex flex-wrap items-center justify-between bg-white  mx-auto p-4 h-[70px] z-50">
           <h1 className='text-[18px] hidden lg:block'>PRECIO JUSTO SRL</h1>
           <button type="button" className="inline-flex items-center p-2 text-[14px] text-white rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 lg:hidden focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600" onClick={() => setNav(!nav)}>
             <span className="sr-only">Open menu</span>
             <svg className="w-9 h-9 text-gray-600" aria-hidden="true" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"  ></path></svg>
           </button>
-          {/* <a className="flex items-center">
-            <img src="/logo-dark.svg" className="h-12 mr-3" alt="Flowbite Logo" />
-          </a> */}
+
           <div className="relative">
             <div className="absolute inset-y-0 right-0 flex items-center pl-3 pointer-events-none">
-              <svg className="w-5 h-5 text-white" aria-hidden="true" fill="text-gray-100" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
+              <svg className="w-8 h-8 text-white " aria-hidden="true" fill="text-gray-100" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
               <span className="sr-only">Search icon</span>
             </div>
             <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-[14px] text-gray-950 border-b border-gray-300  bg-transparent focus:ring-white focus:border-white focus:outline-transparent" placeholder="Busca tu producto..." />
           </div>
+
           <Cart />
         </div>
       </nav>
