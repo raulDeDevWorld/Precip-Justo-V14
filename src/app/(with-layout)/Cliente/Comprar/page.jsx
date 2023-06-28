@@ -78,7 +78,7 @@ function Comprar({ theme, styled, click, children }) {
 
             {Object.values(cart).reduce((acc, i, index) => {
               const sum = i['costo'] * i['cantidad']
-              return sum + acc
+              return sum + acc   
             }, 0)} BOB
 
           </span>
