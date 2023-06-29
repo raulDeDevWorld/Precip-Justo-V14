@@ -3156,6 +3156,11 @@ jsonpointer@^5.0.0:
   resolved "https://registry.yarnpkg.com/jsonpointer/-/jsonpointer-5.0.1.tgz#2110e0af0900fd37467b5907ecd13a7884a1b559"
   integrity sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==
 
+jsqr@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/jsqr/-/jsqr-1.4.0.tgz#8efb8d0a7cc6863cb6d95116b9069123ce9eb2d1"
+  integrity sha512-dxLob7q65Xg2DvstYkRpkYtmKm2sPJ9oFhrhmudT1dZvNFFTlroai3AWSpLey/w5vMcLBXRgOJsbXpdN9HzU/A==
+
 "jsx-ast-utils@^2.4.1 || ^3.0.0":
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-3.3.3.tgz#76b3e6e6cece5c69d49a5792c3d01bd1a0cdc7ea"
@@ -3882,6 +3887,20 @@ puppeteer@^20.7.3:
     "@puppeteer/browsers" "1.4.2"
     cosmiconfig "8.2.0"
     puppeteer-core "20.7.3"
+
+qrcode-decoder@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/qrcode-decoder/-/qrcode-decoder-0.3.3.tgz#17904502ace7c863a791735618c7b5e3f252d714"
+  integrity sha512-0pwJIK2cHJDPZ2Rpbd0aLcQg3N4pFOnfHjBUNJnutBOCkcGhsYMiyBgDPEaiZQV+pxrM97bkPPKlSkl724u14Q==
+  dependencies:
+    jsqr "^1.4.0"
+
+qrcode-parser@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/qrcode-parser/-/qrcode-parser-2.1.3.tgz#7fe7612bc193a7836a76e73257f118e4b18bbfa0"
+  integrity sha512-tyakoHUQXCjH1+RGiqxH3/6XqbQuXuSaW0CkUp1AlYT0+XA4ndG7bxxyyWpdnr0Z2Vuv0GRwgKSq6sOzNiQfog==
+  dependencies:
+    jsqr "^1.4.0"
 
 qrcode.react@^3.1.0:
   version "3.1.0"
