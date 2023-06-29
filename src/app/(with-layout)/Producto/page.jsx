@@ -55,8 +55,8 @@ export default function Home() {
 
     console.log(item)
     return (
-        item !== undefined ? <main className="p-5  flex flex-col items-center lg:flex-row lg:justify-between lg:items-center pt-[20px] pb-[60px]">
-            <div className='flex flex-wrap justify-center lg:justify-start max-w-[400px]'>
+        item !== undefined ? <main className="p-5 max-w-screen flex flex-col items-center lg:flex-row lg:justify-between lg:items-center pt-[20px] pb-[60px]">
+            <div className='flex flex-wrap justify-center lg:justify-start md:max-w-[400px]'>
                 <img src={item.url} className='w-[90vw] max-w-[400px]' alt="" />
                 <div className='w-full flex justify-end  items-center p-4 '>
                     <div class="flex items-baseline text-gray-900">

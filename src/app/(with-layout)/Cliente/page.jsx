@@ -36,7 +36,7 @@ function Home() {
         <main className="">
             <div className="w-screen lg:w-auto">
 
-
+<QRreader></QRreader>
 
                 <div className="bg-gray-50 px-5 py-16 rounded-b-[50px]">
 
