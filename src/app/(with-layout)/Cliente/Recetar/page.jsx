@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Button from '@/components/Button';
 import { useUser } from '@/context/Context.js'
 import Subtitle from '@/components/Subtitle'
@@ -11,10 +11,18 @@ import Label from '@/components/Label'
 import MiniCard from '@/components/MiniCard'
 import Input from '@/components/Input'
 import { useRouter } from 'next/navigation';
+import { generateUUID } from '@/utils/UIDgenerator'
+// import { PDFDownloadLink } from "@react-pdf/renderer";
+// import dynamic from "next/dynamic";
+
+// const InvoicePDF = dynamic(() => import("../components/pdf"), {
+//   ssr: false,
+// });
+import QRCode from "qrcode.react";
 
 function Comprar({ theme, styled, click, children }) {
 
-  const { user, userDB, cart, productDB, setUserProduct, setUserItem, setUserData, setUserSuccess } = useUser()
+  const { user, userDB, cart, qr, setQr, QRurl, setQRurl, productDB, setUserProduct, setUserItem, setUserData, setUserSuccess } = useUser()
   const [add, setAdd] = useState(false)
   const [showCart, setShowCart] = useState(false)
   const [state, setState] = useState({})
@@ -25,20 +33,41 @@ function Comprar({ theme, styled, click, children }) {
   function onChangeHandler(e) {
     setState({ ...state, [e.target.name]: e.target.value })
   }
+
+  const handlerQRUrl = (e) => {
+    const qr = e
+    setQr(qr)
+
+  };
+
+
+
   function handlerPay(e) {
     e.preventDefault()
+    const dataURL = state.paciente.replaceAll(' ', '') + user.uuid
+    handlerQRUrl(dataURL)
     Object.values(cart).map((i) => {
       const data = { ...i }
       delete data['created_at']
       delete data['id']
-      writeUserData('receta', { ...data, ...state, medico: user.uid}, i.uuid, userDB, setUserData, setUserSuccess, 'existos', null)
+      writeUserData('Receta', { ...data, ...state, medico: user.uuid, qr: dataURL }, i.uuid, userDB, setUserData, setUserSuccess, 'existos', null)
     })
   }
+  function generarPDF(e) {
+    e.preventDefault()
 
-console.log(state)
-  return (<div className='w-screen p-5'>
+  }
+  console.log(state)
 
-    <form >
+  useEffect(() => {
+    document.getElementById('qr') && setQRurl(document.getElementById('qr').toDataURL())
+  }, [qr, QRurl]);
+
+  console.log(QRurl)
+
+  return (<div className='w-screen p-5 flex flex-col justify-center items-center'>
+
+    <form className='min-w-[90%]'>
       <h3 className='text-center text-[16px] pb-3'>PACIENTE</h3>
       <div className="grid gap-6 mb-6 md:grid-cols-2">
         <div>
@@ -54,9 +83,24 @@ console.log(state)
           <Input type="text" name="hospital" onChange={onChangeHandler} />
         </div>
         <Button theme="Success" click={handlerPay}> Guardar</Button>
-
+        {/* <InvoicePDF dbUrl={dataUrl}/> */}
       </div>
     </form>
+    <div className='w-[150px] h-[150px]'>
+      {qr !== '' && <QRCode
+        id='qr'
+        size={256}
+        style={{ height: "auto", maxWidth: "100%", width: "100%", border: 'none', backgroundColor: 'red' }}
+        value={qr}
+        level={'H'}
+        includeMargin={false}
+        renderAs={'canvas'}
+        viewBox={`0 0 256 256`}
+      />}
+
+    </div>
+
+
   </div>)
 }
 

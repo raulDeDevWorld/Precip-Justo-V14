@@ -62,13 +62,15 @@ export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, d
                     <span class="text-[12px] text-red-600 font-semibold">BOB</span>
                     <span class="text-[18px]  text-red-600 font-extrabold tracking-tight">{i.costo}</span>
                 </div>
+                {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0 && <span className='text-[16px] text-right px-5'> {cart[i.uuid].cantidad} </span>}
             </div>
             <div className='flex py-4 pr-4'>
-                {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0
-                    ? 
-                        <Button theme='MiniPrimary' click={(e) => addLessCart(e, i)}>Quitar</Button>
-                    :   <Button theme='MiniSuccess' click={(e) => addCart(e, i)}>Recetar</Button>
-
+            {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0
+                    ? <div className='flex w-full'>
+                        <Button theme='MiniSecondary' click={(e) => addPlussCart(e, i)}>+</Button>
+                        <Button theme='MiniPrimary' click={(e) => addLessCart(e, i)}>-</Button>
+                    </div>
+                    : <Button theme='MiniSuccess' click={(e) => addCart(e, i)}>Recetar</Button>
                 }
             </div>
         </div>

@@ -15,6 +15,9 @@ export function UserProvider({ children }) {
 	const [cart, setCart] = useState({})
 	const [success, setSuccess] = useState('')
 	const [pedidos, setPedidos] = useState([])
+	const [qr, setQr] = useState('');
+	const [QRurl, setQRurl] = useState('');
+
 
 	const setUserProfile = (data) => {
 		setUser(data)
@@ -51,6 +54,10 @@ export function UserProvider({ children }) {
 			item,
 			cart,
 			success,
+			qr, 
+			QRurl, 
+			setQRurl,
+			setQr,
 			setUserProfile,
 			setUserData,
 			setUserCart,
@@ -60,7 +67,7 @@ export function UserProvider({ children }) {
 			setUserSuccess,
 			setUserItem
 		})
-	}, [user, userDB, distributorPDB, productDB, pedidos, item, cart, success,])
+	}, [user, userDB, distributorPDB, productDB, pedidos, item, cart, success, qr, 	QRurl])
 
 	return (
 		<UserContext.Provider value={value} >

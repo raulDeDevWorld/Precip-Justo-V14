@@ -22,27 +22,7 @@ function Home() {
     const [postImage, setPostImage] = useState({})
     const [urlPostImage, setUrlPostImage] = useState({})
 
-    function seeMore() {
-        router.push('/Producto')
-    }
-    const onClickHandlerCategory = (name, value, uuid) => {
-        setState({ ...state, [uuid]: { ...state[uuid], uuid, ['categoria']: value } })
-    }
 
-    const onClickHandlerCity = (name, value, uuid) => {
-        setState({ ...state, [uuid]: { ...state[uuid], uuid, ['ciudad']: value } })
-    }
-
-    function manageInputIMG(e, uuid) {
-        const file = e.target.files[0]
-        setPostImage({ ...postImage, [uuid]: file })
-        setUrlPostImage({ ...urlPostImage, [uuid]: URL.createObjectURL(file) })
-        setState({ ...state, [uuid]: { ...state[uuid], uuid } })
-    }
-
-    const onClickHandlerAvailability = (name, value, uuid) => {
-        setState({ ...state, [uuid]: { ...state[uuid], uuid, ['disponibilidad']: value } })
-    }
 
     function onChangeHandler(e, i) {
         setState({ ...state, [i.uuid]: { ...state[i.uuid], uuid: i.uuid, [e.target.name]: e.target.value } })
@@ -50,8 +30,8 @@ function Home() {
 
     function save(e, i) {
         e.preventDefault()
-        updateUserData('Producto', state[i.uuid], i.uuid)
-        postImage[i.uuid] && uploadStorage('Producto', postImage[i.uuid], i.uuid, updateUserData, true)
+        updateUserData('Receta', state[i.uuid], i.uuid)
+        postImage[i.uuid] && uploadStorage('Receta', postImage[i.uuid], i.uuid, updateUserData, true)
         const obj = { ...state }
         delete obj[i.uuid]
         setState(obj)
@@ -59,7 +39,7 @@ function Home() {
 
     function delet (e, i) {
         e.preventDefault()
-        deleteUserData('Producto', i.uuid)
+        deleteUserData('Receta', i.uuid)
         // postImage[i.uuid] && uploadStorage('Producto', postImage[i.uuid], i.uuid, updateUserData, true)
         // const obj = { ...state }
         // delete obj[i.uuid]
@@ -67,13 +47,13 @@ function Home() {
     }  
 
     useEffect(() => {
-        readUserData('Receta', user.uuid, distributorPDB, setUserDistributorPDB, null, null, 'Medico', true)
+        readUserData('Receta', user.uuid, distributorPDB, setUserDistributorPDB, null, null, 'medico', true)
     }, [])
 
     return (
 
         <div class="relative overflow-x-auto shadow-md ">
-            <table class="w-[1800px] text-[12px] text-left text-gray-500">
+            <table class="w-full text-[12px] text-left text-gray-500">
                 <thead class="text-[12px] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-3 py-3">
