@@ -6,6 +6,7 @@ import style from './Cliente.module.css'
 import Button from '@/components/Button'
 import Subtitle from '@/components/Subtitle'
 import Card from '@/components/Card'
+import CardM from '@/components/CardM'
 import QRreader from '@/components/QRreader'
 import Tag from '../../../components/Tag'
 import Cart from '../../../components/Cart'
@@ -18,7 +19,7 @@ import QrcodeDecoder from 'qrcode-decoder';
 import { QRreaderUtils } from '@/utils/QRreader'
 
 function Home() {
-    const { cart, productDB, setUserProduct, setUserItem, item} = useUser()
+    const {user, cart, productDB, setUserProduct, setUserItem, item} = useUser()
 
     const router = useRouter()
 
@@ -26,13 +27,15 @@ function Home() {
     function HandlerCheckOut() {
         router.push('/Cliente/Comprar')
     }
-
+    function HandlerRecetar() {
+        router.push('/Cliente/Recetar')
+    }
     function HandlerOnChange(e) {
         QRreaderUtils(e)
     }
 
 
-    console.log(cart)
+    console.log(user)
 
     useEffect(() => {
         readUserAllData('Producto', productDB, setUserProduct)
@@ -81,13 +84,17 @@ function Home() {
                 <div className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
                     {productDB !== null && productDB !== undefined &&
                         productDB.map((i, index) =>
-                            <Card i={i} />
+                           user.rol === 'Medico' ? <CardM i={i} /> : <Card i={i} />
                         )
                     }
                 </div>
             </div>
             {Object.entries(cart).length !== 0 && <div className="fixed w-screen px-5 bottom-[65px] lg:w-[200px] lg:bottom-auto lg:top-[75px] lg:left-auto lg:right-5">
-                <Button theme="Success" click={HandlerCheckOut}>Ejecutar compra</Button>
+        {    user.rol === 'Medico' 
+        ? <Button theme="Success" click={HandlerRecetar}>Detallar Receta</Button>
+        : <Button theme="Success" click={HandlerCheckOut}>Ejecutar compra</Button>}
+                
+                
             </div>}
         </main>
     )

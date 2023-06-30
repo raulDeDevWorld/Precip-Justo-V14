@@ -121,7 +121,7 @@ function Home({ children }) {
       </main>
 
       {user !== undefined && <div className="fixed bottom-0 left-0 z-50 w-full h-[65px] bg-gray-50 border-t-8 border-white rounded-t-[40px] lg:hidden">
-        <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
+        <div className={`grid h-full max-w-lg ${user && user.rol === 'Distribuidor' ? 'grid-cols-5' : 'grid-cols-4'} mx-auto font-medium`}>
 
 
 
@@ -138,12 +138,19 @@ function Home({ children }) {
 
             {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
           </button>
-          <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Agregar`)}>
-            <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"></path>
-            </svg>
-            {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
-          </button>
+          {user && user.rol == 'Medico' ? ''
+            : <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Agregar`)}>
+              <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"></path>
+              </svg>
+              {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
+            </button>
+          }
+
+
+
+
+
           <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Transacciones`)}>
 
 
@@ -162,6 +169,7 @@ function Home({ children }) {
 
             {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
           </button>
+
         </div>
       </div>}
 
