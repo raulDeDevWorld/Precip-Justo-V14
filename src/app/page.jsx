@@ -47,7 +47,7 @@ export default function Home() {
           <Image src="/logo-main.svg" width="150" height="150" alt="User" />
         </div>
         <br />
-        <h5 className="text-[24px] text-center font-medium text-white">Iniciar Sesión</h5>
+        <h5 className="text-[18px] text-center text-white">Iniciar Sesión</h5>
         <br />
         <div>
           <label htmlFor="email" className="block mb-2 text-[16px] text-left font-medium text-white">Email</label>

@@ -54,7 +54,7 @@ function Home() {
                     <Image src="/logo-main.svg" width="150" height="150" alt="User" />
                 </div>
                 <br />
-                <h5 className="text-[24px] text-center font-medium text-white">Registrate</h5>
+                <h5 className="text-[18px] text-center text-white">Registrate</h5>
                 <br />                        <div>
                     <label htmlFor="email" className="block mb-2 text-[16px] text-left font-medium text-white">Nombre</label>
                     <Input type="text" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="" required />

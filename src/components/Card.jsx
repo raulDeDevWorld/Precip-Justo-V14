@@ -61,8 +61,8 @@ export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, d
             </div>
             <div className='w-full flex justify-between  items-center p-4'>
                 <div class="flex items-baseline text-gray-900">
-                    <span class="text-[12px] text-red-600 font-semibold">BOB</span>
-                    <span class="text-[18px]  text-red-600 font-extrabold tracking-tight">{i.costo}</span>
+                    <span class="text-[12px] text-gray-600 font-semibold">BOB</span>
+                    <span class="text-[18px]  text-gray-600 font-extrabold tracking-tight">{i.costo}</span>
                 </div>
                 {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0 && <span className='text-[16px] text-right px-5'> {cart[i.uuid].cantidad} </span>}
             </div>
@@ -72,7 +72,7 @@ export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, d
                         <Button theme='MiniSecondary' click={(e) => addPlussCart(e, i)}>+</Button>
                         <Button theme='MiniPrimary' click={(e) => addLessCart(e, i)}>-</Button>
                     </div>
-                    : <Button theme='MiniPrimary' click={(e) => addCart(e, i)}>Comprar</Button>
+                    : <Button theme='MiniPrimaryComprar' click={(e) => addCart(e, i)}>Comprar</Button>
                 }
             </div>
         </div>

@@ -42,7 +42,7 @@ function Home({ children }) {
   console.log(filter)
 
   return (
-    <div className="pt-[65px] pb-[65px] min-h-screen bg-gray-white"  >
+    <div className="pt-[65px] pb-[65px] min-h-screen bg-gray-white"  style={{ backgroundImage: `url(bg.png)`, backgroundAttachment: 'fixed', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'bottom' }}>
 
       <nav className="w-screen fixed top-0 border-b border-gray-200 z-50 " >
         <div className=" flex flex-wrap items-center justify-between bg-white  mx-auto p-4 h-[70px] z-50">
