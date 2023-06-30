@@ -151,13 +151,13 @@ function Home({ children }) {
 
             {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
           </button>
-          {user && user.rol == 'Medico' ? ''
-            : <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Agregar`)}>
+          {user && user.rol == 'Distribuidor' ? <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group" onClick={() => redirectHandler(`/Distribuidor/Agregar`)}>
               <svg className="w-11 h-11 mb-1 text-gray-600 bg-white rounded-full group-hover:text-blue-600 p-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"></path>
               </svg>
               {/* <span className="text-[12px] text-gray-600  group-hover:text-blue-600 ">Publicar</span> */}
             </button>
+            : ''
           }
 
 

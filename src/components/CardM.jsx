@@ -4,7 +4,7 @@ import Button from '@/components/Button'
 import { useUser } from '@/context/Context.js'
 import { useRouter } from 'next/navigation';
 
-export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, descripcion, i }) {
+export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, descripcion, i, recetado}) {
 
     const { user, userDB, distributorPDB, setUserDistributorPDB, setUserItem, item, setUserData, setUserSuccess, cart, setUserCart } = useUser()
     const router = useRouter()
@@ -56,7 +56,8 @@ export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, d
                     <p class="text-gray-700 text-[12px]">{i['descripcion basica']}</p>
                 </div>
             </div>
-            <div class="h-[150px] w-[150px] rounded-t text-center" style={{ backgroundImage: `url(${i.url})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}></div>
+            <div class="relative h-[150px] w-[150px] rounded-t text-center" style={{ backgroundImage: `url(${i.url})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+            </div>
             <div className='w-full flex justify-between  items-center p-4'>
                 <div class="flex items-baseline text-gray-900">
                     <span class="text-[12px] text-red-600 font-semibold">BOB</span>
@@ -65,7 +66,7 @@ export default function Card({ nombre1, nombre2, nombre3, costo, url, empresa, d
                 {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0 && <span className='text-[16px] text-right px-5'> {cart[i.uuid].cantidad} </span>}
             </div>
             <div className='flex py-4 pr-4'>
-            {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0
+                {cart && cart[i.uuid] && cart[i.uuid].cantidad !== undefined && cart[i.uuid].cantidad !== 0
                     ? <div className='flex w-full'>
                         <Button theme='MiniSecondary' click={(e) => addPlussCart(e, i)}>+</Button>
                         <Button theme='MiniPrimary' click={(e) => addLessCart(e, i)}>-</Button>

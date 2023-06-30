@@ -31,11 +31,11 @@ function Home() {
         router.push('/Cliente/Recetar')
     }
     function HandlerOnChange(e) {
-        QRreaderUtils(e)
+        QRreaderUtils(e ,setFilterQR)
     }
 
 
-    console.log(user)
+    console.log(filterQR)
 
     useEffect(() => {
         readUserAllData('Producto', productDB, setUserProduct)
@@ -81,6 +81,15 @@ function Home() {
                     </div>
                 </div>
                 <br />
+                {filterQR.length > 0 && <div className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
+                    {recetaDBP !== null && recetaDBP !== undefined &&
+                        recetaDBP.map((i, index) =>
+                            user.rol === 'Medico'
+                                ?  i.qr.includes(filterQR) &&  <CardM i={i} />
+                                : i.qr.includes(filterQR) && <Card i={i} recetado={true} />
+                        )
+                    }
+                </div>}
                 {filter.length == 0 &&  filterQR.length == 0 &&  <div className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
                     {productDB !== null && productDB !== undefined &&
                         productDB.map((i, index) =>
@@ -88,15 +97,7 @@ function Home() {
                         )
                     }
                 </div>}
-                {filterQR.length > 0 && <div className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
-                    {recetaDBP !== null && recetaDBP !== undefined &&
-                        recetaDBP.map((i, index) =>
-                            user.rol === 'Medico'
-                                ? i.qr  == filter && <CardM i={i} />
-                                : i.qr  == filter && <Card i={i} />
-                        )
-                    }
-                </div>}
+               
                 {filter.length > 0 && <div className="relative bg-gray-50 rounded-t-[50px] w-full flex flex-col items-center justify-center px-5 pt-16">
                     {productDB !== null && productDB !== undefined &&
                         productDB.map((i, index) =>

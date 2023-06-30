@@ -29,6 +29,10 @@ function Comprar({ theme, styled, click, children }) {
     // })
     router.push('/Cliente/Comprar/Detalle')
   }
+  function seguimiento() {
+ 
+    router.push('/Cliente/Seguimiento')
+  }
 
   console.log(cart)
   return (<div className='w-screen p-5'>
@@ -43,7 +47,7 @@ function Comprar({ theme, styled, click, children }) {
         Puedes hacer el seguimiento de tu compra en la barra de usuario o presionando el siguiente boton
       </div>
       <br />
-      <Button theme='Primary'>Seguimiento de compra</Button>
+      <Button theme='Primary' click={seguimiento}>Seguimiento de compra</Button>
     </div>}
 
     <br />
@@ -89,12 +93,12 @@ function Comprar({ theme, styled, click, children }) {
       </ul>
     </div>
     <br />
-{ Object.values(cart).length > 0 && <>
+{/* { Object.values(cart).length > 0 && <>
       <Button theme="Success" click={handlerPay}> Pagar por QR</Button>
       <br />
       <br />
       <Button theme="Success" click={handlerPay}> Pagar con tarjeta</Button>
-    </>}
+    </>} */}
 
   </div>)
 }
