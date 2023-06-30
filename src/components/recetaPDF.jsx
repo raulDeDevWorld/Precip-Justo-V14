@@ -5,8 +5,7 @@ import { useUser } from "../context/Context.js"
 import { useState, useRef, useEffect } from 'react'
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import Button from '../components/Button'
-import { useRouter } from 'next/router'
-import { writeUserData } from '../firebase/utils'
+import { useRouter } from 'next/navigation';
 
 
 Font.register({ family: "Inter", src: "/assets/font.otf" })
@@ -24,59 +23,20 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(255, 255, 255)',
         boxShadow: '0 0 5px 1px rgb(175, 175, 175)',
     },
-    form: {
-        boxSizing: 'border-box',
-        position: 'relative',
-        width: '6cm',
-        height: '8cm',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        border: '2mm solid rgb(229, 229, 229)',
-        margin: '0.5mm'
-    },
-
-    formReverse: {
-        boxSizing: 'border-box',
-        position: 'relative',
-        width: '6cm',
-        height: '8cm',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        border: '0.5mm dashed rgb(229, 229, 229)',
-        margin: '0.5mm'
-    },
-
-
     image: {
         boxSizing: 'border-box',
         position: 'relative',
         objectFit: 'cover'
     },
 
-    heart: {
-        height: '50px',
-        width: '50px',
-        textAlign: 'center',
-        position: 'absolute',
-        fontSize: '12px',
-        color: 'rgb(0, 0, 0)',
-        border: 'none',
-        padding: '5px',
-        marginBottom: '50px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
 })
 
 const PDFView = ({ dbUrl, style }) => {
     const router = useRouter()
 
-    const [ dataUrl, setDataUrl] = useState('');
+    const [dataUrl, setDataUrl] = useState('');
 
-    const {userDB, user} = useUser()
+    const { userDB, user, recetaDB, cart } = useUser()
     const [isCliente, setisCliente] = useState(false);
 
     function download(url) {
@@ -94,8 +54,7 @@ const PDFView = ({ dbUrl, style }) => {
             return ios ? !standalone && !safari : userAgent.includes('wv');
         }
         if (isWebview()) {
-            writeUserData (`/`, {[user.uid]: image}, null)
-            router.pathname !== '/DownloaderPDF' &&   window.open(`https://collage-two.vercel.app/DownloaderPDF?dataUrl=${dataUrl}&uid=${user.uid}`, '_system')
+            router.pathname !== '/DownloaderPDF' && window.open(`https://collage-two.vercel.app/DownloaderPDF?dataUrl=${dataUrl}&uid=${user.uid}`, '_system')
         } else {
             console.log('no es una webview')
         }
@@ -113,33 +72,105 @@ const PDFView = ({ dbUrl, style }) => {
                 <Document>
                     <Page size='A4' style={styles.body} >
                         <View>
-                            <Text>En prcio justo nos sentimos orgullosos de poder brindar nuestro apoyo a medicos de gran capacidad, asi como un amplio profesionalismo como el Dr.</Text>
+                            <Text style={{ fontSize: '12px' }}>En precio justo nos sentimos orgullosos de poder brindar nuestro apoyo a medicos de gran capacidad, asi como un amplio profesionalismo como el Dr. {user.nombre}</Text>
                         </View>
 
-                        <View>
-                            <Text>RECETA MEDICA</Text>
-                            <Text>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et a ratione, sequi cum quaerat, exercitationem labore incidunt repellendus corporis, debitis assumenda! Eius veritatis at a corrupti illo quo nostrum ipsum!
-                            Id inventore minus nam eveniet neque unde accusamus dolorum culpa esse alias, adipisci voluptatem. Alias laboriosam, tempore assumenda aliquid suscipit est facilis. Delectus enim, libero numquam assumenda quae recusandae aliquid.
-                            Modi dolorum mollitia ea ipsa autem eveniet dignissimos, expedita excepturi dolores esse blanditiis aut voluptas deleniti aspernatur eos ad maxime temporibus quaerat magni voluptatibus unde doloribus animi, vel cum? Eaque.</Text>
-                        </View>
-                        <View style={styles.container} >
-                            <Text>TOTAL PRODUCTOS</Text>
-                            {uuid && uuid.map((i, index) =>
-                                <View style={styles.box} key={index}>
-                                    <Image src='/logo.png' style={styles.image}></Image>
-                                    <Text style={styles.text}>Gracias por tu compra</Text>
-                                    <Text style={styles.text}>Tu codigo de activación es el:</Text>
-                                    <Text style={styles.text}>{i}  </Text>
+                        <View style={{ display: 'flex', width: '100%', flexDirection: 'row', paddingTop: '50px' }}>
+                            <View style={{ width: '50%' }}>
+                                <Text style={{ fontSize: '12px', alignText: 'center' }}>RECETA MEDICA</Text>
+
+                                <View style={{ paddingTop: '25px' }}>
+                                    <Text style={{ fontSize: '12px' }}>Paciente: {recetaDB.paciente}</Text>
                                 </View>
-                            )}
+                                <View style={{ paddingTop: '25px' }}>
+                                    <Text style={{ fontSize: '12px' }}>Diagnostico: {recetaDB.diagnostico}</Text>
+                                </View>
+                                <View style={{ paddingTop: '25px' }}>
+                                    <Text style={{ fontSize: '12px' }}>Hospital o centro de salud: {recetaDB.hospital}</Text>
+                                </View>
+                                <View style={{ paddingTop: '25px' }}>
+                                    <Text style={{ fontSize: '12px' }}>Hospital o centro de salud: {user.nombre}</Text>
+                                </View>
+
+                                <Text style={{ fontSize: '12px', alignText: 'center', paddingTop: '25px' }}>TOTAL PRODUCTOS</Text>
+
+                                {Object.values(cart).length > 0 ? Object.values(cart).map((i, index) => {
+                                    return <View style={{ paddingTop: '25px' }}  >
+
+                                        <Text style={{ fontSize: '12px' }}>
+                                            Nombre de producto: {i['nombre de producto 1']}
+                                        </Text>
+                                        <Text style={{ fontSize: '12px' }}>
+                                            Cantidad: {i['cantidad']}u
+                                        </Text>
+
+                                    </View>
+                                }) : ''}
+
+
+
+
+
+                                {/* <View style={{ paddingTop: '25px' }}>
+
+                                    <span className='font-bold '>TOTAL: </span>
+                                    <span className='font-bold '>
+                                        {Object.values(cart).reduce((acc, i, index) => {
+                                            const sum = i['costo'] * i['cantidad']
+                                            return sum + acc
+                                        }, 0)} BOB
+                                    </span>
+
+                                </View> */}
+
+
+
+
+
+
+
+                                {/* <li className='flex justify-between text-gray-700 text-[16px] '>
+                                    <span className='font-bold '>TOTAL: </span>
+                                    <span className='font-bold '>
+                                        {Object.values(cart).reduce((acc, i, index) => {
+                                            const sum = i['costo'] * i['cantidad']
+                                            return sum + acc
+                                        }, 0)} BOB
+                                    </span>
+                                </li> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </View>
+                            <View style={{ width: '50%' }}>
+                                <Image src="/logo-main.png" style={{ height: '130px', width: '100px' }}></Image>
+                                {dataUrl ? <Image src={dataUrl} style={{ width: '200px', height: '200px', marginTop: '50px' }} />
+                                    : ''}
+                            </View>
                         </View>
+
+
+
                     </Page>
                 </Document>
             }
-                fileName='Activadores'>
+                fileName='Receta'>
 
                 {({ blob, url, loading, error }) =>
-                    <Button theme={'Primary'} click={(e)=>download(url)}> {'Descargar PDF'}</Button>
+                    <Button theme={'Primary'} click={(e) => download(url)}> {'Descargar PDF'}</Button>
                 }
             </PDFDownloadLink>}
         </div>

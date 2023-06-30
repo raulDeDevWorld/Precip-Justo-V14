@@ -12,26 +12,25 @@ import MiniCard from '@/components/MiniCard'
 import Input from '@/components/Input'
 import { useRouter } from 'next/navigation';
 import { generateUUID } from '@/utils/UIDgenerator'
-// import { PDFDownloadLink } from "@react-pdf/renderer";
-// import dynamic from "next/dynamic";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
 
-// const InvoicePDF = dynamic(() => import("../components/pdf"), {
-//   ssr: false,
-// });
+const InvoicePDF = dynamic(() => import("@/components/recetaPDF"), {
+  ssr: false,
+});
 import QRCode from "qrcode.react";
 
 function Comprar({ theme, styled, click, children }) {
 
-  const { user, userDB, cart, qr, setQr, QRurl, setQRurl, productDB, setUserProduct, setUserItem, setUserData, setUserSuccess } = useUser()
+  const { user, userDB, cart, qr, setQr, QRurl, setQRurl, productDB, setUserProduct, setUserItem, setUserData, setUserSuccess, recetaDB, setRecetaDB } = useUser()
   const [add, setAdd] = useState(false)
   const [showCart, setShowCart] = useState(false)
-  const [state, setState] = useState({})
   const [check, setCheck] = useState(false)
 
   const router = useRouter()
 
   function onChangeHandler(e) {
-    setState({ ...state, [e.target.name]: e.target.value })
+    setRecetaDB({ ...recetaDB, [e.target.name]: e.target.value })
   }
 
   const handlerQRUrl = (e) => {
@@ -44,26 +43,26 @@ function Comprar({ theme, styled, click, children }) {
 
   function handlerPay(e) {
     e.preventDefault()
-    const dataURL = state.paciente.replaceAll(' ', '') + user.uuid
+    const dataURL = recetaDB.paciente.replaceAll(' ', '') + user.uuid
     handlerQRUrl(dataURL)
     Object.values(cart).map((i) => {
       const data = { ...i }
       delete data['created_at']
       delete data['id']
-      writeUserData('Receta', { ...data, ...state, medico: user.uuid, qr: dataURL }, i.uuid, userDB, setUserData, setUserSuccess, 'existos', null)
+      writeUserData('Receta', { ...data, ...recetaDB, medico: user.uuid, qr: dataURL }, i.uuid, userDB, setUserData, setUserSuccess, 'existos', null)
     })
   }
   function generarPDF(e) {
     e.preventDefault()
 
   }
-  console.log(state)
+  console.log(recetaDB)
 
   useEffect(() => {
     document.getElementById('qr') && setQRurl(document.getElementById('qr').toDataURL())
   }, [qr, QRurl]);
 
-  console.log(QRurl)
+  // console.log(QRurl)
 
   return (<div className='w-screen p-5 flex flex-col justify-center items-center'>
 
@@ -83,9 +82,9 @@ function Comprar({ theme, styled, click, children }) {
           <Input type="text" name="hospital" onChange={onChangeHandler} />
         </div>
         <Button theme="Success" click={handlerPay}> Guardar</Button>
-        {/* <InvoicePDF dbUrl={dataUrl}/> */}
       </div>
     </form>
+
     <div className='w-[150px] h-[150px]'>
       {qr !== '' && <QRCode
         id='qr'
@@ -99,6 +98,7 @@ function Comprar({ theme, styled, click, children }) {
       />}
 
     </div>
+    <InvoicePDF dbUrl={QRurl}/>
 
 
   </div>)
