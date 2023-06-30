@@ -98,7 +98,8 @@ function Comprar({ theme, styled, click, children }) {
       />}
 
     </div>
-    <InvoicePDF dbUrl={QRurl}/>
+    <br />
+    {qr !== '' && <InvoicePDF dbUrl={QRurl}/>}
 
 
   </div>)

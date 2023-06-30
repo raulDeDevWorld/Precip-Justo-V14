@@ -53,7 +53,7 @@ function Home() {
     return (
 
         <div class="relative overflow-x-auto shadow-md ">
-            <table class="w-full min-w-[800px] text-[12px] text-left text-gray-500">
+            <table class="w-full min-w-[700px] text-[12px] text-left text-gray-500">
                 <thead class="text-[12px] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-3 py-3">

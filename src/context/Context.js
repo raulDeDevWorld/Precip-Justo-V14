@@ -18,6 +18,12 @@ export function UserProvider({ children }) {
 	const [qr, setQr] = useState('');
 	const [QRurl, setQRurl] = useState('');
 	const [recetaDB, setRecetaDB] = useState({});
+	const [filter, setFilter] = useState('');
+	const [filterQR, setFilterQR] = useState('');
+	const [recetaDBP, setRecetaDBP] = useState(undefined);
+
+
+
 
 
 
@@ -59,6 +65,12 @@ export function UserProvider({ children }) {
 			qr, 
 			QRurl, 
 			recetaDB, 
+			filter, 
+			filterQR, 
+			recetaDBP, 
+			setRecetaDBP,
+			setFilterQR,
+			setFilter,
 			setRecetaDB,
 			setQRurl,
 			setQr,
@@ -71,7 +83,7 @@ export function UserProvider({ children }) {
 			setUserSuccess,
 			setUserItem
 		})
-	}, [user, userDB, distributorPDB, productDB, pedidos, item, cart, success, qr, 	QRurl, recetaDB])
+	}, [user, userDB, distributorPDB, productDB, pedidos, item, cart, success, qr, 	QRurl, recetaDB, filter, filterQR, recetaDBP, ])
 
 	return (
 		<UserContext.Provider value={value} >

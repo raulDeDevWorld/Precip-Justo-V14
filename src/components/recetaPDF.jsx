@@ -79,23 +79,23 @@ const PDFView = ({ dbUrl, style }) => {
                             <View style={{ width: '50%' }}>
                                 <Text style={{ fontSize: '12px', alignText: 'center' }}>RECETA MEDICA</Text>
 
-                                <View style={{ paddingTop: '25px' }}>
+                                <View style={{ paddingTop: '12px' }}>
                                     <Text style={{ fontSize: '12px' }}>Paciente: {recetaDB.paciente}</Text>
                                 </View>
-                                <View style={{ paddingTop: '25px' }}>
+                                <View style={{ paddingTop: '12px' }}>
                                     <Text style={{ fontSize: '12px' }}>Diagnostico: {recetaDB.diagnostico}</Text>
                                 </View>
-                                <View style={{ paddingTop: '25px' }}>
+                                <View style={{ paddingTop: '12px' }}>
                                     <Text style={{ fontSize: '12px' }}>Hospital o centro de salud: {recetaDB.hospital}</Text>
                                 </View>
-                                <View style={{ paddingTop: '25px' }}>
-                                    <Text style={{ fontSize: '12px' }}>Hospital o centro de salud: {user.nombre}</Text>
+                                <View style={{ paddingTop: '12px' }}>
+                                    <Text style={{ fontSize: '12px' }}>Medico: {user.nombre}</Text>
                                 </View>
 
                                 <Text style={{ fontSize: '12px', alignText: 'center', paddingTop: '25px' }}>TOTAL PRODUCTOS</Text>
 
                                 {Object.values(cart).length > 0 ? Object.values(cart).map((i, index) => {
-                                    return <View style={{ paddingTop: '25px' }}  >
+                                    return <View style={{ paddingTop: '12px' }}  >
 
                                         <Text style={{ fontSize: '12px' }}>
                                             Nombre de producto: {i['nombre de producto 1']}
@@ -107,63 +107,28 @@ const PDFView = ({ dbUrl, style }) => {
                                     </View>
                                 }) : ''}
 
-
-
-
-
-                                {/* <View style={{ paddingTop: '25px' }}>
-
-                                    <span className='font-bold '>TOTAL: </span>
-                                    <span className='font-bold '>
-                                        {Object.values(cart).reduce((acc, i, index) => {
-                                            const sum = i['costo'] * i['cantidad']
-                                            return sum + acc
-                                        }, 0)} BOB
-                                    </span>
-
-                                </View> */}
-
-
-
-
-
-
-
-                                {/* <li className='flex justify-between text-gray-700 text-[16px] '>
-                                    <span className='font-bold '>TOTAL: </span>
-                                    <span className='font-bold '>
-                                        {Object.values(cart).reduce((acc, i, index) => {
-                                            const sum = i['costo'] * i['cantidad']
-                                            return sum + acc
-                                        }, 0)} BOB
-                                    </span>
-                                </li> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             </View>
-                            <View style={{ width: '50%' }}>
-                                <Image src="/logo-main.png" style={{ height: '130px', width: '100px' }}></Image>
-                                {dataUrl ? <Image src={dataUrl} style={{ width: '200px', height: '200px', marginTop: '50px' }} />
-                                    : ''}
+                            <View style={{ width: '50%', }}>
+                                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                                    <Image src="/logo-main.png" style={{ height: '130px', width: '100px' }}></Image>
+                                </View>
+                                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+
+                                    {dataUrl ? <Image src={dataUrl} style={{ width: '200px', height: '200px', marginTop: '50px' }} />
+                                        : ''}
+                                </View>
+
                             </View>
                         </View>
+                        <View style={{ width: '100%', paddingTop: '25px' }}>
+                            <Text style={{ fontSize: '12px' }}>
 
+                                El médico especialista que le está atendiendo cuenta con la idoneidad necesaria para emitir esta receta de implantes de osteosíntesis.
+                                Precio justo recomienda seguir siempre el criterio de su médico tratante, puesto su experiencia es invaluable.
+                                Precio Justo. La mejor calidad al menor precio.
 
-
+                            </Text>
+                        </View>
                     </Page>
                 </Document>
             }
