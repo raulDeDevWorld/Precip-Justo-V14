@@ -36,7 +36,7 @@ const signOut = async (email, password) => {
 //--------------------------CRUD----------------------------------
 
 const writeUserData = async (rute, object, uuid, context, updateContext, setUserSuccess, msg, key) => {
-
+    console.log(object)
 
     const result = await supabase
         .from(rute)
@@ -53,7 +53,7 @@ const readUserData = async (rute, uuid, context, updateContext, key, data, eq, a
     const result = await supabase
         .from(rute)
         .select()
-        .eq(eq ? eq :'uuid', uuid)
+        .eq(eq ? eq : 'uuid', uuid)
     console.log(result)
     console.log(result.data)
     if (result.data !== null && result.data.length !== 0) {
@@ -86,10 +86,17 @@ const updateUserData = async (rute, object, uuid) => {
 }
 
 
+const deleteUserData = async (rute, uuid) => {
+    const { error } = await supabase
+        .from(rute)
+        .delete()
+        .eq('uuid', uuid)
+}
 
 
 
 
 
-export { onAuth, signUpWithEmailAndPassword, signInWithEmailAndPassword, signOut, writeUserData, readUserData, updateUserData, readUserAllData }
+
+export { onAuth, signUpWithEmailAndPassword, signInWithEmailAndPassword, signOut, writeUserData, readUserData, deleteUserData, updateUserData, readUserAllData }
 

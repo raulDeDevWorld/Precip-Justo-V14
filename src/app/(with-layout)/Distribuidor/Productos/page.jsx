@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 import { WithAuth } from '@/HOCs/WithAuth'
 import { useEffect, useState } from 'react'
-import { writeUserData, readUserData, updateUserData } from '@/supabase/utils'
+import { writeUserData, readUserData, updateUserData , deleteUserData} from '@/supabase/utils'
 import { uploadStorage } from '@/supabase/storage'
 
 
@@ -55,6 +55,14 @@ function Home() {
         delete obj[i.uuid]
         setState(obj)
     }
+
+    function delet (i) {
+        deleteUserData('Producto', i.uuid)
+        // postImage[i.uuid] && uploadStorage('Producto', postImage[i.uuid], i.uuid, updateUserData, true)
+        // const obj = { ...state }
+        // delete obj[i.uuid]
+        // setState(obj)
+    }  
 
     useEffect(() => {
         readUserData('Producto', user.uuid, distributorPDB, setUserDistributorPDB, null, null, 'distribuidor', true)
@@ -161,7 +169,10 @@ function Home() {
                                 </label>
                             </td>
                             <td class="px-3 py-4">
-                                <Button theme={state[i.uuid] ? "Primary" : "Disable"} click={() => save(i)}>Guardar</Button>
+                                {state[i.uuid] 
+                                ? <Button theme={"Primary"} click={() => save(i)}>Guardar</Button>
+                                : <Button theme={"Danger"} click={() => delet(i)}>Eliminar</Button>
+                            }
                             </td>
                         </tr>
                     })

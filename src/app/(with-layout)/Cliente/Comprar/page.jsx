@@ -10,6 +10,7 @@ import Page from '@/components/Page'
 import Label from '@/components/Label'
 import MiniCard from '@/components/MiniCard'
 import Input from '@/components/Input'
+import { useRouter } from 'next/navigation';
 
 function Comprar({ theme, styled, click, children }) {
 
@@ -17,57 +18,68 @@ function Comprar({ theme, styled, click, children }) {
   const [add, setAdd] = useState(false)
   const [showCart, setShowCart] = useState(false)
   const [state, setState] = useState({})
+  const [check, setCheck] = useState(false)
+
+  const router = useRouter()
 
   function onChangeHandler(e) {
     setState({ ...state, [e.target.name]: e.target.value })
   }
   function handlerPay() {
+
     Object.values(cart).map((i) => {
-      // writeUserData('Pedido', {...i.cantidad, ...i.categoria, ...i.ciudad, ...i.costo, i.producto}, i.uuid, userDB, setUserData, setUserSuccess, 'existos', null)
+      const data = { ...i }
+      delete data['created_at']
+      delete data['id']
+      writeUserData('Pedido', { ...data, envio: check, ...state, estado:'nuevo'}, i.uuid, userDB, setUserData, setUserSuccess, 'existos', null)
     })
+    router.push('/Cliente/Comprar/Detalle')
   }
 
 
-  console.log(state)
+  console.log(check)
   return (<div className='w-screen p-5'>
     <div className='w-1/2 py-4'>
-
       <Button theme='Primary'>Imprimir</Button>
     </div>
-
-
-
-
-
     <form >
       <h3 className='text-center text-[16px] pb-3'>DATOS DEL PACIENTE</h3>
-
       <div className="grid gap-6 mb-6 md:grid-cols-2">
         <div>
           <Label htmlFor="">NOMBRE DEL PACIENTE</Label>
-          <Input type="text" name="nombre" onChange={onChangeHandler} />
+          <Input type="text" name="nombre del paciente" onChange={onChangeHandler} />
         </div>
-
         <div>
           <Label htmlFor="">EDAD</Label>
-          <Input type="text" name="descripcion" onChange={onChangeHandler} />
+          <Input type="text" name="edad del paciente" onChange={onChangeHandler} />
         </div>
-
         <div>
           <Label htmlFor="">CI</Label>
-          <Input type="text" name="descripcion" onChange={onChangeHandler} />
+          <Input type="text" name="CI del paciente" onChange={onChangeHandler} />
         </div>
         <div>
           <Label htmlFor="">NÚMERO DE CELULAR</Label>
-          <Input type="text" name="descripcion" onChange={onChangeHandler} />
+          <Input type="text" name="celular del paciente" onChange={onChangeHandler} />
         </div>
         <div>
           <Label htmlFor="">NÚMERO DE CELULAR REFERENCIA</Label>
-          <Input type="text" name="descripcion" onChange={onChangeHandler} />
+          <Input type="text" name="referencia del paciente" onChange={onChangeHandler} />
         </div>
+
+
+        <div className="flex items-start">
+          <div className="flex items-start">
+            <div className="flex items-center h-5 mr-5">
+              <input id="remember" type="checkbox" value="" onClick={()=>setCheck(!check)} className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+            </div>
+            <Label htmlFor="remember" className="ml-2 text-[14px] font-medium ">Solicitar envio a distancia</Label>
+          </div>
+        </div>
+
+
+
       </div>
     </form>
-
     <h3 className='text-center text-[16px] pb-3'>DATOS DEL CARRITO</h3>
     <div className='relative items-center justify-between w-full max-w-[500px] bg-transparent md:flex md:w-auto  transition-all	z-0' >
       <ul className="flex flex-col bg-gray-100 p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
@@ -75,21 +87,21 @@ function Comprar({ theme, styled, click, children }) {
         <li className='flex justify-between text-gray-700 text-[16px] '>
           <span className='font-bold '>TOTAL: </span>
           <span className='font-bold '>
-
             {Object.values(cart).reduce((acc, i, index) => {
               const sum = i['costo'] * i['cantidad']
-              return sum + acc   
+              return sum + acc
             }, 0)} BOB
-
           </span>
         </li>
       </ul>
     </div>
     <br />
-    <Button theme="Success" click={handlerPay}> Pagar por QR</Button>
-    <br />
-    <br />
-    <Button theme="Success" click={handlerPay}> Pagar con tarjeta</Button>
+    {Object.values(cart).length > 0 && <>
+      <Button theme="Success" click={handlerPay}> Pagar por QR</Button>
+      <br />
+      <br />
+      <Button theme="Success" click={handlerPay}> Pagar con tarjeta</Button>
+    </>}
   </div>)
 }
 

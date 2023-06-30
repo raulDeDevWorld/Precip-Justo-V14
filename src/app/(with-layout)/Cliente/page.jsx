@@ -18,7 +18,7 @@ import QrcodeDecoder from 'qrcode-decoder';
 import { QRreaderUtils } from '@/utils/QRreader'
 
 function Home() {
-    const { cart, productDB, setUserProduct, setUserItem } = useUser()
+    const { cart, productDB, setUserProduct, setUserItem, item} = useUser()
 
     const router = useRouter()
 
@@ -32,7 +32,7 @@ function Home() {
     }
 
 
-
+    console.log(cart)
 
     useEffect(() => {
         readUserAllData('Producto', productDB, setUserProduct)

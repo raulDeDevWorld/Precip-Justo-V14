@@ -73,7 +73,7 @@ function Home() {
         // router.push('/Clinica/Perfil')
     }
 
-    console.log(state)
+    console.log(userDB)
 
     return (
         <form className='px-5 py-[70px]' >
@@ -122,7 +122,7 @@ function Home() {
                     <Input type="text" name="nombre de producto 3" onChange={onChangeHandler} />
                 </div>
                 <div>
-                    <Label htmlFor="">Nombre de la empresa</Label>
+                    <Label htmlFor="">Nombre de la empresa y/o sucursal</Label>
                     <Input type="text" name="empresa" onChange={onChangeHandler} />
                 </div>
 
@@ -143,6 +143,10 @@ function Home() {
                     <Select arr={['La Paz', 'Cochabamba', 'Santa Cruz']} name='ciudad' click={onClickHandlerCity} />
                 </div>
                 <div>
+                    <Label htmlFor="password" className="block mb-2 text-sm text-left  font-medium ">Dirección</Label>
+                    <Input type="text" name="direccion" onChange={onChangeHandler} />
+                </div>
+                <div>
                     <Label htmlFor="">Categoria</Label>
                     <Select arr={['Titanio', 'Acero Inox', 'Otros']} name='categoria' click={onClickHandlerCategory} />
                 </div>
@@ -153,6 +157,14 @@ function Home() {
                 <div>
                     <Label htmlFor="">Costo</Label>
                     <Input type="text" name="costo" styled={{ textAlign: 'center' }} onChange={onChangeHandler} />
+                </div>
+                <div>
+                    <Label htmlFor="">Telefono</Label>
+                    <Input type="text" name="telefono" styled={{ textAlign: 'center' }} onChange={onChangeHandler} />
+                </div>
+                <div>
+                    <Label htmlFor="">Whatsapp</Label>
+                    <Input type="text" name="whatsapp" styled={{ textAlign: 'center' }} onChange={onChangeHandler} />
                 </div>
             </div>
             <div className='flex w-full justify-around'>
