@@ -42,7 +42,8 @@ function Home({ children }) {
   console.log(filter)
 
   return (
-    <div className="pt-[65px] pb-[65px] min-h-screen bg-gray-white"  style={{ backgroundImage: `url(bg.png)`, backgroundAttachment: 'fixed', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'bottom' }}>
+    // <div className="pt-[65px] pb-[65px] min-h-screen bg-gray-white"  style={{ backgroundImage: `url(bg.png)`, backgroundAttachment: 'fixed', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'bottom' }}>
+    <div className="pt-[65px] pb-[65px] min-h-screen bg-gray-white">
 
       <nav className="w-screen fixed top-0 border-b border-gray-200 z-50 " >
         <div className=" flex flex-wrap items-center justify-between bg-white  mx-auto p-4 h-[70px] z-50">
@@ -130,7 +131,10 @@ function Home({ children }) {
       </div>
 
       <main className={`relative min-w-screen lg:min-w-auto my-[0px] transition-all ${nav ? 'w-screen pl-[220px] md:pl-[270px] md:pt-[40px] md:pr-[50px] lg:pr-[70px]' : ' md:pt-[40px] md:px-[50px] lg:pl-[70px]'}`}>
+      <img src="/bg.png" className='fixed bottom-0 right-[20px] w-[40vw]' alt="" />
+
         {children}
+
       </main>
 
       {user !== undefined && <div className="fixed bottom-0 left-0 z-50 w-full h-[65px] bg-gray-50 border-t-8 border-white rounded-t-[40px] lg:hidden">
@@ -185,7 +189,6 @@ function Home({ children }) {
 
         </div>
       </div>}
-
     </div>
   )
 }
