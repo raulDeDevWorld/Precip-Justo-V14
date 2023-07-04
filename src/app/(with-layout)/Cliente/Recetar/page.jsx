@@ -100,7 +100,7 @@ function Comprar({ theme, styled, click, children }) {
     </div>
     <br />
     {qr !== '' && <InvoicePDF dbUrl={QRurl}/>}
-<a href="/api">descargar</a>
+<a href="/api" download>descargar</a>
 
   </div>)
 }
